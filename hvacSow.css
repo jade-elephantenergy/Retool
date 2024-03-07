@@ -199,6 +199,7 @@ table {
     </style>
     {{ heatPump2 | render_table(table_class='custom-table') }}
   </div>
+    {{ hp2SystemReqs }}
 {% endif %}
     
  <div>
