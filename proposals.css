@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Home Comfort Proposal</title>
+	<script src="https://apitemplateio.s3-ap-southeast-1.amazonaws.com/static/js/autofonts-bundle.js"></script>
+	<style>
+		body {
+			-webkit-font-smoothing: antialiased;
+			background: white;
+		}
+
+		.center-text {
+			text-align: center;
+			font-size: 18px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/400bd1ca-d72b-4da7-8252-c0a8d6742c8d.png" alt="Your Image Description" width="111" height="100">
+		<p class="center-text">Home Comfort Proposal</p>
+		<p>Prepared For: {{customerName}}</p>
+		<p>{{customerAddress}}</p>
+		<p>{{customerEmail}}</p>
+		<p>{{customerPhone}}</p>
+
+		<p>Prepared By: {{hca}}</p>
+		<p>{{hcaEmail}}</p>
+		<p>{{hcaPhone}}</p>
+
+		<p>Date: {{date}}</p>
+	</div>
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/ad150daa-a9f6-4e7c-b537-fe7b8e45a0d9.png" alt="Elephant Scene" style="max-width: 100%; max-height: 100vh;">
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/e5ba3a71-76fe-42f3-bf0b-e4e0d34571c0.png" alt="Elephant Way" style="max-width: 100%; max-height: 100vh;">
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/df5d589d-61c9-4669-932e-8988c0cc1497.png" alt="CO Map" style="max-width: 100%; max-height: 100vh;">
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/f3936e22-ade0-422a-8ce3-3f1b6bc69440.png" alt="Why Electrify" style="max-width: 100%; max-height: 100vh;">
+
+  <embed src="data:application/pdf;base64,{{systemDesignOptions}}" alt="System Design Options" style="max-width: 100%; max-height: 100vh;">
+
+{% if hpwhSize %}
+  <img src="data:image/png;base64,{{ hpwhSize }}" alt="HPWH Size Options" style="max-width: 100%; max-height: 100vh;">
+{% else %} 
+  <img style="display: none;">
+{% endif %}
+
+  <div style="background-color: #f4f4f4; padding: 0px;">
+  <p><strong>Energy Efficiency:</strong><p>
+  <p>Investing in energy efficiency reduces your operating costs and allows you to more confidently down-size your Heat Pump</p>
+</div>
+
+{% if coldGraph %}
+   <div style="font-size: 18pt; color: #8892e9;">
+    Sizing a System for Your Unique Home
+  </div>
+  <img src='data:image/png;base64,{{ coldGraph }}' alt="Cold Graph" style="max-width: 50%; max-height: 100vh;">
+{% else %}
+   <div style="display: none;">
+    Sizing a System for Your Unique Home
+  </div>
+  <img style="display: none;">
+{% endif %}
+
+            
+ 
+</body>
+
+</html>
