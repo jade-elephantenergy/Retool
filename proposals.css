@@ -6,6 +6,8 @@
 	<script src="https://apitemplateio.s3-ap-southeast-1.amazonaws.com/static/js/autofonts-bundle.js"></script>
 	<style>
 		body {
+			font-family: 'Inter', sans-serif;
+			font-size: 10pt;
 			-webkit-font-smoothing: antialiased;
 			background: white;
 		}
@@ -15,56 +17,471 @@
 			font-size: 18px;
 			font-weight: bold;
 		}
+
+		img {
+			margin-bottom: 20px;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th,
+		td {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 3px;
+		}
+
+		th {
+			background-color: #ffffff;
+		}
 	</style>
 </head>
 
 <body>
 	<div>
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/400bd1ca-d72b-4da7-8252-c0a8d6742c8d.png" alt="Your Image Description" width="111" height="100">
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/400bd1ca-d72b-4da7-8252-c0a8d6742c8d.png" alt="Elephant Energy Logo" width="111" height="100">
 		<p class="center-text">Home Comfort Proposal</p>
-		<p>Prepared For: {{customerName}}</p>
-		<p>{{customerAddress}}</p>
-		<p>{{customerEmail}}</p>
-		<p>{{customerPhone}}</p>
+		<div style="font-size: 10pt;">
+			<p>Prepared For: {{customerName}}</p>
+			<p>{{customerAddress}}</p>
+			<p>{{customerEmail}}</p>
+			<p>{{customerPhone}}</p>
 
-		<p>Prepared By: {{hca}}</p>
-		<p>{{hcaEmail}}</p>
-		<p>{{hcaPhone}}</p>
+			<p>Prepared By: {{hca}}</p>
+			<p>{{hcaEmail}}</p>
+			<p>{{hcaPhone}}</p>
 
-		<p>Date: {{date}}</p>
+			<p>Date: {{date}}</p>
+		</div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/ad150daa-a9f6-4e7c-b537-fe7b8e45a0d9.png" alt="Elephant Scene" style="max-width: 100%; max-height: 100vh;">
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/e5ba3a71-76fe-42f3-bf0b-e4e0d34571c0.png" alt="Elephant Way" style="max-width: 100%; max-height: 100vh;">
+		<div style="page-break-before: always;"></div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/df5d589d-61c9-4669-932e-8988c0cc1497.png" alt="CO Map" style="max-width: 100%; max-height: 100vh;">
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/f3936e22-ade0-422a-8ce3-3f1b6bc69440.png" alt="Why Electrify" style="max-width: 100%; max-height: 100vh;">
+		<div style="page-break-before: always;"></div>
+		<div style="font-size: 16pt; color: #8892e9;">
+			System Designs for Consideration
+		</div>
+		<div style="display: flex;">
+			<div style="flex: 1; margin-right: 10px; font-size: 10pt;">
+				<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+					<thead>
+						<tr>
+							<th>Option 1</th>
+							<th> </th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for option in systemDesignOption1 %}
+						<tr>
+							<td>{{ option.label }}</td>
+							<td>{{ option.detail }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+			<div style="flex: 1;">
+				<table style="font-size: 10pt;">
+					<thead>
+						<tr>
+							<th>Cost Breakdown</th>
+							<th> </th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for option in costOption1 %}
+						<tr>
+							<td>{{ option.label }}</td>
+							<td>${{ "{:,}".format(option.value) }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+
+		<div style="margin-top: 50px;"></div>
 	</div>
-	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/ad150daa-a9f6-4e7c-b537-fe7b8e45a0d9.png" alt="Elephant Scene" style="max-width: 100%; max-height: 100vh;">
-	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/e5ba3a71-76fe-42f3-bf0b-e4e0d34571c0.png" alt="Elephant Way" style="max-width: 100%; max-height: 100vh;">
-	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/df5d589d-61c9-4669-932e-8988c0cc1497.png" alt="CO Map" style="max-width: 100%; max-height: 100vh;">
-	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/f3936e22-ade0-422a-8ce3-3f1b6bc69440.png" alt="Why Electrify" style="max-width: 100%; max-height: 100vh;">
+	{% if systemDesignOption2 is defined %}
+	<div style="display: flex;">
+		<div style="flex: 1; margin-right: 10px;">
+			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+				<thead>
+					<tr>
+						<th>Option 2</th>
+						<th> </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for option in systemDesignOption2 %}
+					<tr>
+						<td>{{ option.label }}</td>
+						<td>{{ option.detail }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 
-  <embed src="data:application/pdf;base64,{{systemDesignOptions}}" alt="System Design Options" style="max-width: 100%; max-height: 100vh;">
+		<div style="flex: 1;">
+			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+				<thead>
+					<tr>
+						<th>Cost Breakdown</th>
+						<th> </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for option in costOption2 %}
+					<tr>
+						<td>{{ option.label }}</td>
+						<td>${{ "{:,}".format(option.value) }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 
-{% if hpwhSize %}
-  <img src="data:image/png;base64,{{ hpwhSize }}" alt="HPWH Size Options" style="max-width: 100%; max-height: 100vh;">
-{% else %} 
-  <img style="display: none;">
-{% endif %}
+	</div>
+	{% endif %}
 
-  <div style="background-color: #f4f4f4; padding: 0px;">
-  <p><strong>Energy Efficiency:</strong><p>
-  <p>Investing in energy efficiency reduces your operating costs and allows you to more confidently down-size your Heat Pump</p>
-</div>
+	<div style="margin-top: 50px;"></div>
+	</div>
+	{% if systemDesignOption3 is defined %}
+	<div style="display: flex;">
+		<div style="flex: 1; margin-right: 10px;">
+			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+				<thead>
+					<tr>
+						<th>Option 3</th>
+						<th> </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for option in systemDesignOption3 %}
+					<tr>
+						<td>{{ option.label }}</td>
+						<td>{{ option.detail }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 
-{% if coldGraph %}
-   <div style="font-size: 18pt; color: #8892e9;">
-    Sizing a System for Your Unique Home
-  </div>
-  <img src='data:image/png;base64,{{ coldGraph }}' alt="Cold Graph" style="max-width: 50%; max-height: 100vh;">
-{% else %}
-   <div style="display: none;">
-    Sizing a System for Your Unique Home
-  </div>
-  <img style="display: none;">
-{% endif %}
+		<div style="flex: 1;">
+			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+				<thead>
+					<tr>
+						<th>Cost Breakdown</th>
+						<th> </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for option in costOption3 %}
+					<tr>
+						<td>{{ option.label }}</td>
+						<td>${{ "{:,}".format(option.value) }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 
-            
- 
+	</div>
+	{% endif %}
+
+	<div style="margin-top: 50px;"></div>
+	</div>
+	{% if systemDesignOption4 is defined %}
+	<div style="page-break-before: always;"></div>
+	<div style="display: flex;">
+		<div style="flex: 1; margin-right: 10px;">
+			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+				<thead>
+					<tr>
+						<th>Option 4</th>
+						<th> </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for option in systemDesignOption4 %}
+					<tr>
+						<td>{{ option.label }}</td>
+						<td>{{ option.detail }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<div style="flex: 1;">
+			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+				<thead>
+					<tr>
+						<th>Cost Breakdown</th>
+						<th> </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for option in costOption4 %}
+					<tr>
+						<td>{{ option.label }}</td>
+						<td>${{ "{:,}".format(option.value) }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	{% endif %}
+
+	<div style="margin-top: 50px;"></div>
+	</div>
+	{% if systemDesignOption5 is defined %}
+	<div style="display: flex;">
+		<div style="flex: 1; margin-right: 10px;">
+			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+				<thead>
+					<tr>
+						<th>Option 5</th>
+						<th> </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for option in systemDesignOption5 %}
+					<tr>
+						<td>{{ option.label }}</td>
+						<td>{{ option.detail }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<div style="flex: 1;">
+			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+				<thead>
+					<tr>
+						<th>Cost Breakdown</th>
+						<th> </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for option in costOption5 %}
+					<tr>
+						<td>{{ option.label }}</td>
+						<td>${{ "{:,}".format(option.value) }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	{% endif %}
+
+	{% if coldGraph %}
+	<div style="page-break-before: always;"></div>
+	<div style="background-color: #f4f4f4; padding: 3px;">
+		<h5><strong>Energy Efficiency:</strong></h5>
+		<p>Investing in energy efficiency reduces your operating costs and allows you to more confidently down-size your Heat Pump</p>
+	</div>
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter" , sans-serif;">
+		<h5>Sizing a System for Your Unique Home</h5>
+		<div style="display: flex;">
+			<img src='data:image/png;base64,{{ coldGraph }}' alt="Cold Graph" style="max-width: 50%; max-height: 100vh;">
+
+			<div style="flex: 1;">
+				<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+					<thead>
+						<tr>
+							<th>Temperature</th>
+							<th>Your Heating Need (k BTU/hr)</th>
+							<th>Your HP (k BTU/hr)</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for option in hddInfo %}
+						<tr>
+							<td>{{ option.temperature }}</td>
+							<td>{{ option.heating_need }}</td>
+							<td>{{ option.hpOutput }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+		<p>We design and size your system to ensure that during the coldest and the warmest days of the year, you can maintain comfortable temperatures inside.</p>
+		<div style="margin-right: 20px;"></div>
+		<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter" , sans-serif;">
+			<h5>Heat Pump: Cost and Carbon Implications</h5>
+		</div>
+		<div style="display: flex;">
+			<img src='data:image/png;base64,{{ annualCostGraph }}' alt="Annual Costs Graph" style="max-width: 50%; max-height: 100vh;">
+			<div style="flex: 1;">
+				<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+					<thead>
+						<tr>
+							<th>Estimate 15 Year Savings of:</th>
+							<th>Carbon Savings</th>
+							<th>% Reduction</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{{ estmSavings }}</td>
+							<td>{{ carbonSavings }}</td>
+							<td>{{ reduction }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+		{% endif %}
+
+
+		{% if hpwhSize %}
+		<div style="page-break-before: always;"></div>
+		<div>
+			<img src="data:image/png;base64,{{ hpwhSize }}" alt="HPWH Size Options" style="max-width: 100%; max-height: 100vh;">
+		</div>
+		<div style="margin-right: 20px;"></div>
+		<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter" , sans-serif;">
+			<h5>Water Heater: Cost and Carbon Implications</h5>
+		</div>
+		<div style="display: flex;">
+			<img src='data:image/png;base64,{{ annualCostGraph2 }}' alt="Annual Costs Graph" style="max-width: 50%; max-height: 100vh;">
+			<div style="flex: 1;">
+				<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+					<thead>
+						<tr>
+							<th>Estimate 15 Year Savings of:</th>
+							<th>Carbon Savings</th>
+							<th>% Reduction</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{{ estmSavings2 }}</td>
+							<td>{{ carbonSavings2 }}</td>
+							<td>{{ reduction2 }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+		{% endif %}
+		<div style="page-break-before: always;"></div>
+		<div>
+			<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/ac21b95d-c1f8-4624-9b53-e0d07ef10ed5.png" alt="Install Includes" style="max-width: 100%; max-height: 100vh;">
+		</div>
+		<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter" , sans-serif;">
+			<h5>Protect Your Investment: Maintenance and Extended Labor Warranty Packages</h5>
+		</div>
+		<div style="display: flex;">
+
+			<div style="flex: 1;">
+				<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+					<thead>
+						<tr>
+							<th>Package</th>
+							<th>Maintenance Visits</th>
+							<th>Cost</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for option in maintenanceTable %}
+						<tr>
+							<td>{{ option.package }}</td>
+							<td>{{ option.maintenance_visits }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<div style="margin-right: 20px;"></div>
+			<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/0e9c8e54-a3a8-42f6-841d-ebc52cc64112.png" alt="Maintenance Pic" style="max-width: 25%; max-height: 100vh;">
+		</div>
+	</div>
+	<div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/c3b268cc-4e5d-4982-906a-42a28aad5a2c.png" alt="Maintenance Graphic" style="max-width: 100%; max-height: 100vh;">
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/f6018858-05e7-4ad7-bc5d-db5082f57485.png" alt="WTE" style="max-width: 100%; max-height: 100vh;">
+	</div>
+	<div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/9412c874-2b9c-4666-8506-5be374263372.png" alt="Invoice Info" style="max-width: 100%; max-height: 100vh;">
+	</div>
+
+	<div style="page-break-before: always;"></div>
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter" , sans-serif;">
+		<h5>Elephant Energy Service Agreement</h5>
+	</div>
+	<!DOCTYPE html>
+	<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Services Agreement</title>
+		<style>
+			body {
+				font-size: 10pt;
+				font-family: 'Inter" , sans-serif;
+
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<p><strong>THIS SERVICES AGREEMENT</strong> (this "<strong>Agreement</strong>") is entered into on the date Customer signs this document (the "<strong>Effective Date</strong>") by and between Elephant Energy, Inc., a Delaware corporation ("<strong>Elephant Energy</strong>"), and <em>insert customer name here</em> ("<strong>Customer</strong>").</p>
+
+		<p>By signing below, the parties indicate they have read and agreed to the Elephant Energy Services Agreement, Standard Terms, and Proposal as of the Effective Date, contained and referenced in these slides.</p>
+
+		<p>Elephant Energy, Inc. hereby proposes to furnish the specified equipment, materials, and labor for the sum of $<em>insert amount due to Elephant here</em>. A downpayment of $<em>insert deposit amount here</em> is due and payable alongside the execution of this contract.</p>
+
+		<p><strong>Elephant Energy</strong> ____________________________________________________ Date___________________________</p>
+
+		<p><strong>Homeowner Acceptance</strong>____________________________________________ Date___________________________</p>
+		<div style="margin-bottom: 20px;"></div>
+		<p><strong>NOW, THEREFORE</strong>, in consideration of the premises and mutual promises, covenants, and agreements set forth in this Agreement, and other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, Elephant Energy and Customer agree as follows:</p>
+
+		<ol>
+			<li><ins>1. Services</ins>
+				<ol type="a">
+					<li><ins>a. Electrification Consultation</ins>. Elephant Energy has provided an initial consultation including a discussion with Customer on their electrification goals to determine what options are available and would best suit Customer’s needs. Elephant Energy has provided a list of recommended services to electrify and reduce climate impact at Customer’s property.</li>
+					<li><ins>b.Statement of Work</ins>. Elephant Energy and Customer have agreed upon services to be performed at Customer’s property (the “Services”) and Elephant Energy has described those services in the proposal set forth below or enclosed with this Agreement (the “Proposal”). The Proposal describes the services to be performed, any exclusions from those services, the estimated project schedule, and the amount of compensation to be paid by Customer.</li>
+				</ol>
+			</li>
+			<li><ins>2. Compensation: Payment</ins>. Customer shall pay Elephant Energy a fixed sum as set forth in the Proposal, subject to adjustments as provided in this Agreement.</li>
+			<li><ins>3. Limited Warranty</ins>. Elephant Energy warrants that the work performed under this Agreement will be of a professional quality, conforming to generally accepted industry standards and practices. Unless provided otherwise in this Agreement, all work will be warranted for a period of one (1) year from the date of substantial completion of the work. Elephant Energy shall perform on-site inspections of the equipment at Customer’s request during the warranty period to ensure the equipment was installed appropriately. This warranty does not cover damage or disrepair resulting from Customer’s negligence or misuse of the equipment or alterations to the equipment made by someone other than an authorized representative of Elephant Energy.</li>
+			<li><ins>4. Up Front Rebates</ins>. Any upfront rebates provided by Elephant Energy that are denied due to Customer not meeting requirements or program funding ending may be added to the Customer’s final invoice or collected after project completion.</li>
+			<li><ins>5. Manufacturer Warranty</ins>. To the extent that manufacturer warranties cover replacement and repair of installed equipment, Elephant Energy shall use commercially reasonable efforts to enable Customer to submit, process and pursue warranty coverage from the manufacturer.</li>
+		</ol>
+		<div style="margin-bottom: 20px;"></div>
+		<p>SECTIONS 3 AND 4 ARE IN LIEU OF ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, AND OF ANY OTHER OBLIGATIONS OR LIABILITY ON ELEPHANT ENERGY’S PART. Under no circumstances will Elephant Energy be liable for incidental or consequential damages or for any repairs or alterations performed without Elephant Energy’s prior written approval. This warranty does not cover damage or defect caused by abuse, misuse, neglect, vandalism, natural disaster, or other cause beyond the control of Elephant Energy, including, but not limited to, structural changes made by Customer or third parties, normal wear and tear, or failure by Customer to provide reasonable and necessary maintenance. Any claim under this warranty must be made in writing and delivered to Elephant Energy within the warranty period. Upon receipt of a valid warranty claim, Elephant Energy shall, as its sole obligation and Customer’s sole remedy, either repair the defect or replace the defective work, at Elephant Energy’s option.</p>
+		<div style="margin-bottom: 20px;"></div>
+		<p><ins>6. Limitation of Liability</ins>. Notwithstanding anything to the contrary in this Agreement, and to the extent permitted by Colorado law including the Colorado Construction Defect Action Reform Act (CDARA), neither party shall be liable to the other party for any incidental, consequential, indirect, special, or punitive damages arising out of or related to this Agreement, whether in contract, tort (including negligence), or other legal theory, and regardless of whether the party was advised of the possibility of such damages. Elephant Energy’s total liability under this Agreement, whether in contract, tort (including negligence), or other legal theory, shall not exceed the total compensation paid to Elephant Energy under this Agreement.</p>
+
+		<p><ins>7. Standard Terms</ins>. Customer represents and warrants to Elephant Energy that it has read and understood the Elephant Energy Standard Terms available here (the “Standard Terms”) which include terms governing dispute resolution, lien rights, and termination and agrees to abide by the terms and conditions of this Agreement and the Standard Terms. The Standard Terms are incorporated by reference as though fully set forth in this Agreement.</p>
+
+		<p><ins>8. Entire Agreement</ins>. This Agreement, together with the Standard Terms and including all exhibits and other documents incorporated into this Agreement by reference, constitutes the entire agreement between the parties with respect to the subject matter of this Agreement and supersedes all prior negotiations, discussions, agreements, and understandings of any kind.</p>
+
+		<p><ins>9. Counterparts: Electronic Signature</ins>. This Agreement may be executed in counterparts, each of which will be deemed an original and all of which together will constitute one and the same document. The parties agree that this Agreement may be signed electronically and that electronic signatures will have the same legal effect as original signatures.</p>
+	</body>
+
+	</html>
+
 </body>
 
 </html>
