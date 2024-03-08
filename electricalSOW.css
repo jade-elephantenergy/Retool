@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Electrical Scope of Work</title>
+	<script src="https://apitemplateio.s3-ap-southeast-1.amazonaws.com/static/js/autofonts-bundle.js"></script>
+	<style>
+		body {
+			-webkit-font-smoothing: antialiased;
+			background: white;
+		}
+
+		.center-text {
+			text-align: center;
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+		table.custom-table td {
+			white-space: normal;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/400bd1ca-d72b-4da7-8252-c0a8d6742c8d.png" alt="Elephant Logo" width="111" height="100">
+		<h1 class="center-text" style="font-family: 'Roboto', sans-serif; font-size: 20px;">Electrical Scope of Work</h1>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Project Overview</p>
+		<style>
+			table {
+				font-family: 'Roboto', sans-serif;
+				font-size: 10pt;
+				border-collapse: collapse;
+			}
+
+			td {
+				padding: 8px;
+				border: 1px solid #dddddd;
+			}
+
+			strong {
+				font-weight: normal;
+			}
+		</style>
+
+		<table>
+			<tr>
+				<td><strong>Project Manager</strong></td>
+				<td>{{ projectManager }}</td>
+			</tr>
+			<tr>
+				<td><strong>Project Address</strong></td>
+				<td>{{ projectAddress }}</td>
+			</tr>
+			<tr>
+				<td><strong>Customer Name</strong></td>
+				<td>{{ customerName }}</td>
+			</tr>
+			<tr>
+				<td><strong>Customer Email</strong></td>
+				<td>{{ customerEmail }}</td>
+			</tr>
+			<tr>
+				<td><strong>Customer Phone</strong></td>
+				<td>{{ customerPhone }}</td>
+			</tr>
+		</table>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Home Overview</p>
+		<style>
+			table {
+				font-family: 'Roboto', sans-serif;
+				font-size: 10pt;
+				border-collapse: collapse;
+			}
+
+			td {
+				padding: 8px;
+				border: 1px solid #dddddd;
+			}
+
+			strong {
+				font-weight: normal;
+			}
+		</style>
+
+		<table>
+			<tr>
+				<td><strong>Type of Home</strong></td>
+				<td>{{ homeType }}</td>
+			</tr>
+			<tr>
+				<td><strong>Wall Type</strong></td>
+				<td>{{ wallType }}</td>
+			</tr>
+		</table>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Other Work</p>
+		<style>
+			table {
+				font-family: 'Roboto', sans-serif;
+				font-size: 10pt;
+				border-collapse: collapse;
+			}
+
+			td {
+				padding: 8px;
+				border: 1px solid #dddddd;
+			}
+
+			strong {
+				font-weight: normal;
+			}
+		</style>
+
+		<table>
+			<tr>
+				<td><strong>HVAC</strong></td>
+				<td>{{ hvacInstaller }}</td>
+				<td><strong>Date</strong></td>
+				<td>{{hvacInstallDate}}</td>
+			</tr>
+			<tr>
+				<td><strong>Plumbing</strong></td>
+				<td>{{ plumbingInstaller }}</td>
+				<td><strong>Date</strong></td>
+				<td>{{plumbingInstallDate}}</td>
+			</tr>
+		</table>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Install Summary</p>
+		<div style="background-color: #C0CFFF; font-family: 'Roboto', sans-serif; font-size: 10pt;">
+			<table style="border-collapse: collapse;">
+				<tr>
+					<td><strong>Overview</strong></td>
+					<td>{{ overview }}</td>
+				</tr>
+				<tr>
+					<td><strong>Major Project Risks</strong></td>
+					<td>{{ majorProjectRisks }}</td>
+				</tr>
+				<tr>
+					<td><strong>Panel Considerations</strong></td>
+					<td>{{panelConsiderations}}</td>
+				</tr>
+			</table>
+		</div>
+
+		<style>
+			table {
+				font-family: 'Roboto', sans-serif;
+				font-size: 10pt;
+				border-collapse: collapse;
+			}
+
+			td {
+				padding: 8px;
+				border: 1px solid #dddddd;
+			}
+
+			strong {
+				font-weight: normal;
+			}
+		</style>
+
+		<table>
+			<tr>
+				<td><strong>Estimated Labor Hours</strong></td>
+				<td>{{ estmLaborHours }}</td>
+				<td>Installers Required</td>
+				<td>{{installersReq}}</td>
+				<td><strong>Asking Offer (w/ Permits) </strong></td>
+				<td>{{ askingOffer }}</td>
+			</tr>
+		</table>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Equipment for Installer to Order</p>
+		{% if not installEquip.error %}
+		<div>
+			<style>
+				.custom-table {
+					border-collapse: collapse;
+					width: 100%;
+				}
+
+				.custom-table th,
+				.custom-table td {
+					border: 1px solid #dddddd;
+					text-align: left;
+					padding: 8px;
+				}
+
+				.custom-table th {
+					background-color: #f2f2f2;
+				}
+			</style>
+
+			{{ installEquip | render_table(table_class='custom-table') }}
+		</div>
+		{% endif %}
+
+		{% if not heatPump1.error %}
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Heat Pump(s)</p>
+		<p style="font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: bold;">Heat Pump 1</p>
+		<div>
+			<style>
+				.custom-table {
+					border-collapse: collapse;
+					width: 100%;
+				}
+
+				.custom-table th,
+				.custom-table td {
+					border: 1px solid #dddddd;
+					text-align: left;
+					padding: 8px;
+				}
+
+				.custom-table th {
+					background-color: #f2f2f2;
+				}
+			</style>
+			{{ heatPump1 | render_table(table_class='custom-table') }}
+		</div>
+		{% endif %}
+
+		{% if not heatPump2.error %}
+		<p style="font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: bold;">Heat Pump 2</p>
+		<div>
+			<style>
+				.custom-table {
+					border-collapse: collapse;
+					width: 100%;
+				}
+
+				.custom-table th,
+				.custom-table td {
+					border: 1px solid #dddddd;
+					text-align: left;
+					padding: 8px;
+				}
+
+				.custom-table th {
+					background-color: #f2f2f2;
+				}
+			</style>
+			{{ heatPump2 | render_table(table_class='custom-table') }}
+		</div>
+		{% endif %}
+
+		{% if not waterHeater.error %}
+		<p style="font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: bold;">Water Heater</p>
+		<div>
+			<style>
+				.custom-table {
+					border-collapse: collapse;
+					width: 100%;
+				}
+
+				.custom-table th,
+				.custom-table td {
+					border: 1px solid #dddddd;
+					text-align: left;
+					padding: 8px;
+				}
+
+				.custom-table th {
+					background-color: #f2f2f2;
+				}
+			</style>
+			{{ waterHeater | render_table(table_class='custom-table') }}
+		</div>
+		{% endif %}
+
+		{% if not evCharging.error %}
+		<p style="font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: bold;">EV Charging</p>
+		<div>
+			<style>
+				.custom-table {
+					border-collapse: collapse;
+					width: 100%;
+				}
+
+				.custom-table th,
+				.custom-table td {
+					border: 1px solid #dddddd;
+					text-align: left;
+					padding: 8px;
+				}
+
+				.custom-table th {
+					background-color: #f2f2f2;
+				}
+			</style>
+			{{ evCharging | render_table(table_class='custom-table') }}
+		</div>
+		{% endif %}
+
+		{% if not inductionWiring.error %}
+		<p style="font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: bold;">Induction Wiring</p>
+		<div>
+			<style>
+				.custom-table {
+					border-collapse: collapse;
+					width: 100%;
+				}
+
+				.custom-table th,
+				.custom-table td {
+					border: 1px solid #dddddd;
+					text-align: left;
+					padding: 8px;
+				}
+
+				.custom-table th {
+					background-color: #f2f2f2;
+				}
+			</style>
+			{{ inductionWiring | render_table(table_class='custom-table') }}
+		</div>
+		{% endif %}
+
+		<div>
+			<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Permitting Information</p>
+			<p style="font-family: 'Roboto', sans-serif; font-size: 10x;">Please pull permits before the day of the install and send to finance@elephantenergy.com.
+				Cost of permits is included in the asking offer.</p>
+		</div>
+		<div>
+			<style>
+				.custom-table {
+					border-collapse: collapse;
+					width: 100%;
+				}
+
+				.custom-table th,
+				.custom-table td {
+					border: 1px solid #dddddd;
+					text-align: left;
+					padding: 8px;
+				}
+
+				.custom-table th {
+					background-color: #f2f2f2;
+				}
+			</style>
+			{{ permitInfo | render_table(table_class='custom-table') }}
+		</div>
