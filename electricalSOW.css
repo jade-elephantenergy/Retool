@@ -45,7 +45,7 @@
 			}
 		</style>
 
-		<table>
+		<table style="font-size: 10pt;">
 			<tr>
 				<td><strong>Project Manager</strong></td>
 				<td>{{ projectManager }}</td>
@@ -86,7 +86,7 @@
 			}
 		</style>
 
-		<table>
+		<table style="font-size: 10pt;">
 			<tr>
 				<td><strong>Type of Home</strong></td>
 				<td>{{ homeType }}</td>
@@ -115,7 +115,7 @@
 			}
 		</style>
 
-		<table>
+		<table style="font-size: 10pt;">
 			<tr>
 				<td><strong>HVAC</strong></td>
 				<td>{{ hvacInstaller }}</td>
@@ -179,27 +179,47 @@
 		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Equipment for Installer to Order</p>
 		{% if not installEquip.error %}
 		<div>
-			<style>
-				.custom-table {
-					border-collapse: collapse;
-					width: 100%;
-				}
+			<div>
+				<style>
+					.custom-table {
+						border-collapse: collapse;
+						width: 100%;
+						font-size: 10pt;
+					}
 
-				.custom-table th,
-				.custom-table td {
-					border: 1px solid #dddddd;
-					text-align: left;
-					padding: 8px;
-				}
+					.custom-table th,
+					.custom-table td {
+						border: 1px solid #dddddd;
+						text-align: left;
+						padding: 8px;
+					}
 
-				.custom-table th {
-					background-color: #f2f2f2;
-				}
-			</style>
+					.custom-table th {
+						background-color: #f2f2f2;
+					}
+				</style>
 
-			{{ installEquip | render_table(table_class='custom-table') }}
+				<table class="custom-table">
+					<thead>
+						<tr>
+							<th>Item Name</th>
+							<th>Specifications</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in installEquip %}
+						<tr>
+							<td>{{ item.item_name }}</td>
+							<td>{{ item.specifications }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
 		{% endif %}
+
+
 
 		{% if not heatPump1.error %}
 		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Heat Pump(s)</p>
@@ -209,6 +229,7 @@
 				.custom-table {
 					border-collapse: collapse;
 					width: 100%;
+					font-size: 8pt;
 				}
 
 				.custom-table th,
@@ -226,13 +247,15 @@
 		</div>
 		{% endif %}
 
-		{% if not heatPump2.error %}
+
+		{% if heatPump2 != [] %}
 		<p style="font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: bold;">Heat Pump 2</p>
 		<div>
 			<style>
 				.custom-table {
 					border-collapse: collapse;
 					width: 100%;
+					font-size: 8pt;
 				}
 
 				.custom-table th,
@@ -250,13 +273,14 @@
 		</div>
 		{% endif %}
 
-		{% if not waterHeater.error %}
+		{% if waterHeater != [] %}
 		<p style="font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: bold;">Water Heater</p>
 		<div>
 			<style>
 				.custom-table {
 					border-collapse: collapse;
 					width: 100%;
+					font-size: 8pt;
 				}
 
 				.custom-table th,
@@ -274,13 +298,14 @@
 		</div>
 		{% endif %}
 
-		{% if not evCharging.error %}
+		{% if evCharging != [] %}
 		<p style="font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: bold;">EV Charging</p>
 		<div>
 			<style>
 				.custom-table {
 					border-collapse: collapse;
 					width: 100%;
+					font-size: 8pt;
 				}
 
 				.custom-table th,
@@ -298,13 +323,14 @@
 		</div>
 		{% endif %}
 
-		{% if not inductionWiring.error %}
+		{% if inductionWiring != [] %}
 		<p style="font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: bold;">Induction Wiring</p>
 		<div>
 			<style>
 				.custom-table {
 					border-collapse: collapse;
 					width: 100%;
+					font-size: 8pt;
 				}
 
 				.custom-table th,
@@ -332,6 +358,7 @@
 				.custom-table {
 					border-collapse: collapse;
 					width: 100%;
+					font-size: 8pt;
 				}
 
 				.custom-table th,
@@ -347,3 +374,7 @@
 			</style>
 			{{ permitInfo | render_table(table_class='custom-table') }}
 		</div>
+	</div>
+</body>
+
+</html>
