@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Home Comfort Proposal</title>
 	<script src="https://apitemplateio.s3-ap-southeast-1.amazonaws.com/static/js/autofonts-bundle.js"></script>
 	<style>
@@ -14,12 +16,14 @@
 
 		.center-text {
 			text-align: center;
-			font-size: 18px;
+			font-size: 16px;
 			font-weight: bold;
 		}
 
 		img {
 			margin-bottom: 20px;
+			max-width: 100%;
+			max-height: 100vh;
 		}
 
 		table {
@@ -49,69 +53,70 @@
 			<p>{{customerAddress}}</p>
 			<p>{{customerEmail}}</p>
 			<p>{{customerPhone}}</p>
-
 			<p>Prepared By: {{hca}}</p>
 			<p>{{hcaEmail}}</p>
 			<p>{{hcaPhone}}</p>
-
 			<p>Date: {{date}}</p>
 		</div>
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/ad150daa-a9f6-4e7c-b537-fe7b8e45a0d9.png" alt="Elephant Scene" style="max-width: 100%; max-height: 100vh;">
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/e5ba3a71-76fe-42f3-bf0b-e4e0d34571c0.png" alt="Elephant Way" style="max-width: 100%; max-height: 100vh;">
-		<div style="page-break-before: always;"></div>
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/df5d589d-61c9-4669-932e-8988c0cc1497.png" alt="CO Map" style="max-width: 100%; max-height: 100vh;">
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/f3936e22-ade0-422a-8ce3-3f1b6bc69440.png" alt="Why Electrify" style="max-width: 100%; max-height: 100vh;">
-		<div style="page-break-before: always;"></div>
-		<div style="font-size: 16pt; color: #8892e9;">
-			System Designs for Consideration
-		</div>
-		<div style="display: flex;">
-			<div style="flex: 1; margin-right: 10px; font-size: 10pt;">
-				<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
-					<thead>
-						<tr>
-							<th>Option 1</th>
-							<th> </th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for option in systemDesignOption1 %}
-						<tr>
-							<td>{{ option.label }}</td>
-							<td>{{ option.detail }}</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-
-			<div style="flex: 1;">
-				<table style="font-size: 10pt;">
-					<thead>
-						<tr>
-							<th>Cost Breakdown</th>
-							<th> </th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for option in costOption1 %}
-						<tr>
-							<td>{{ option.label }}</td>
-							<td>${{ "{:,}".format(option.value) }}</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-
-		</div>
-
-		<div style="margin-top: 50px;"></div>
 	</div>
-	{% if systemDesignOption2 is defined %}
+
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/ad150daa-a9f6-4e7c-b537-fe7b8e45a0d9.png" alt="Elephant Scene">
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/e5ba3a71-76fe-42f3-bf0b-e4e0d34571c0.png" alt="Elephant Way">
+
+	<div style="page-break-before: always;"></div>
+
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/df5d589d-61c9-4669-932e-8988c0cc1497.png" alt="CO Map" style="max-width: 100%; max-height: 100vh;">
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/f3936e22-ade0-422a-8ce3-3f1b6bc69440.png" alt="Why Electrify" style="max-width: 100%; max-height: 100vh;">
+
+	<div style="page-break-before: always;"></div>
+
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		System Designs for Consideration
+	</div>
 	<div style="display: flex;">
 		<div style="flex: 1; margin-right: 10px;">
-			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+			<table style="font-size:10pt;">
+				<thead>
+					<tr>
+						<th>Option 1</th>
+						<th> </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for option in systemDesignOption1 %}
+					<tr>
+						<td>{{ option.label }}</td>
+						<td>{{ option.detail }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div style="flex: 1;">
+			<table style="font-size:10pt;">
+				<thead>
+					<tr>
+						<th>Cost Breakdown</th>
+						<th> </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for option in costOption1 %}
+					<tr>
+						<td>{{ option.label }}</td>
+						<td>${{ "{:,}".format(option.value) }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	{% if systemDesignOption2 is defined %}
+	<div style="page-break-before: always;"></div>
+	<div style="display: flex;">
+		<div style="flex: 1; margin-right: 10px;">
+			<table style="font-size:10pt;">
 				<thead>
 					<tr>
 						<th>Option 2</th>
@@ -128,9 +133,8 @@
 				</tbody>
 			</table>
 		</div>
-
 		<div style="flex: 1;">
-			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+			<table style="font-size:10pt;">
 				<thead>
 					<tr>
 						<th>Cost Breakdown</th>
@@ -147,16 +151,14 @@
 				</tbody>
 			</table>
 		</div>
-
 	</div>
 	{% endif %}
 
-	<div style="margin-top: 50px;"></div>
-	</div>
 	{% if systemDesignOption3 is defined %}
+	<div style="page-break-before: always;"></div>
 	<div style="display: flex;">
 		<div style="flex: 1; margin-right: 10px;">
-			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+			<table style="font-size:10pt;">
 				<thead>
 					<tr>
 						<th>Option 3</th>
@@ -173,9 +175,8 @@
 				</tbody>
 			</table>
 		</div>
-
 		<div style="flex: 1;">
-			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+			<table style="font-size:10pt;">
 				<thead>
 					<tr>
 						<th>Cost Breakdown</th>
@@ -192,17 +193,14 @@
 				</tbody>
 			</table>
 		</div>
-
 	</div>
 	{% endif %}
 
-	<div style="margin-top: 50px;"></div>
-	</div>
 	{% if systemDesignOption4 is defined %}
 	<div style="page-break-before: always;"></div>
 	<div style="display: flex;">
 		<div style="flex: 1; margin-right: 10px;">
-			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+			<table style="font-size:10pt;">
 				<thead>
 					<tr>
 						<th>Option 4</th>
@@ -219,9 +217,8 @@
 				</tbody>
 			</table>
 		</div>
-
 		<div style="flex: 1;">
-			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+			<table style="font-size:10pt;">
 				<thead>
 					<tr>
 						<th>Cost Breakdown</th>
@@ -238,16 +235,14 @@
 				</tbody>
 			</table>
 		</div>
-
 	</div>
 	{% endif %}
 
-	<div style="margin-top: 50px;"></div>
-	</div>
 	{% if systemDesignOption5 is defined %}
+	<div style="page-break-before: always;"></div>
 	<div style="display: flex;">
 		<div style="flex: 1; margin-right: 10px;">
-			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+			<table style="font-size:10pt;">
 				<thead>
 					<tr>
 						<th>Option 5</th>
@@ -264,9 +259,8 @@
 				</tbody>
 			</table>
 		</div>
-
 		<div style="flex: 1;">
-			<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+			<table style="font-size:10pt;">
 				<thead>
 					<tr>
 						<th>Cost Breakdown</th>
@@ -283,7 +277,6 @@
 				</tbody>
 			</table>
 		</div>
-
 	</div>
 	{% endif %}
 
@@ -293,13 +286,13 @@
 		<h5><strong>Energy Efficiency:</strong></h5>
 		<p>Investing in energy efficiency reduces your operating costs and allows you to more confidently down-size your Heat Pump</p>
 	</div>
-	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter" , sans-serif;">
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		<h5>Sizing a System for Your Unique Home</h5>
 		<div style="display: flex;">
 			<img src='data:image/png;base64,{{ coldGraph }}' alt="Cold Graph" style="max-width: 50%; max-height: 100vh;">
 
 			<div style="flex: 1;">
-				<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
+				<table style="font-size: 8pt; font-family: 'Inter', sans-serif;">
 					<thead>
 						<tr>
 							<th>Temperature</th>
@@ -318,101 +311,98 @@
 					</tbody>
 				</table>
 			</div>
-
 		</div>
-		<p>We design and size your system to ensure that during the coldest and the warmest days of the year, you can maintain comfortable temperatures inside.</p>
+	</div>
+	<p>We design and size your system to ensure that during the coldest and the warmest days of the year, you can maintain comfortable temperatures inside.</p>
+
+	<div style="margin-bottom: 50px;"></div>
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		<h5>Heat Pump: Cost and Carbon Implications</h5>
+	</div>
+	<div style="display: flex;">
+		<img src='data:image/png;base64,{{ annualCostGraph }}' alt="Annual Costs Graph" style="max-width: 50%; max-height: 100vh;">
+		<div style="flex: 1;">
+			<table style="font-size: 8pt; font-family: 'Inter', sans-serif;">
+				<thead>
+					<tr>
+						<th>Estimate 15 Year Savings of:</th>
+						<th>Carbon Savings</th>
+						<th>% Reduction</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{ estmSavings }}</td>
+						<td>{{ carbonSavings }}</td>
+						<td>{{ reduction }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	{% endif %}
+
+	{% if hpwhSize %}
+	<div style="page-break-before: always;"></div>
+	<div>
+		<img src="data:image/png;base64,{{ hpwhSize }}" alt="HPWH Size Options" style="max-width: 100%; max-height: 100vh;">
+	</div>
+	<div style="margin-bottom: 50px;"></div>
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		<h5>Water Heater: Cost and Carbon Implications</h5>
+	</div>
+	<div style="display: flex;">
+		<img src='data:image/png;base64,{{ annualCostGraph2 }}' alt="Annual Costs Graph" style="max-width: 50%; max-height: 100vh;">
+		<div style="flex: 1;">
+			<table style="font-size: 8pt; font-family: 'Inter', sans-serif;">
+				<thead>
+					<tr>
+						<th>Estimate 15 Year Savings of:</th>
+						<th>Carbon Savings</th>
+						<th>% Reduction</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{ estmSavings2 }}</td>
+						<td>{{ carbonSavings2 }}</td>
+						<td>{{ reduction2 }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	{% endif %}
+	<div style="page-break-before: always;"></div>
+	<div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/ac21b95d-c1f8-4624-9b53-e0d07ef10ed5.png" alt="Install Includes" style="max-width: 100%; max-height: 100vh;">
+	</div>
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		<h5>Protect Your Investment: Maintenance and Extended Labor Warranty Packages</h5>
+	</div>
+	<div style="display: flex;">
+		<div style="flex: 1;">
+			<table style="font-size: 10pt; font-family: 'Inter', sans-serif;">
+				<thead>
+					<tr>
+						<th>Package</th>
+						<th>Maintenance Visits</th>
+						<th>Cost</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for option in maintenanceTable %}
+					<tr>
+						<td>{{ option.package }}</td>
+						<td>{{ option.maintenance_visits }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 		<div style="margin-right: 20px;"></div>
-		<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter" , sans-serif;">
-			<h5>Heat Pump: Cost and Carbon Implications</h5>
-		</div>
-		<div style="display: flex;">
-			<img src='data:image/png;base64,{{ annualCostGraph }}' alt="Annual Costs Graph" style="max-width: 50%; max-height: 100vh;">
-			<div style="flex: 1;">
-				<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
-					<thead>
-						<tr>
-							<th>Estimate 15 Year Savings of:</th>
-							<th>Carbon Savings</th>
-							<th>% Reduction</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>{{ estmSavings }}</td>
-							<td>{{ carbonSavings }}</td>
-							<td>{{ reduction }}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-		</div>
-		{% endif %}
-
-
-		{% if hpwhSize %}
-		<div style="page-break-before: always;"></div>
-		<div>
-			<img src="data:image/png;base64,{{ hpwhSize }}" alt="HPWH Size Options" style="max-width: 100%; max-height: 100vh;">
-		</div>
-		<div style="margin-right: 20px;"></div>
-		<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter" , sans-serif;">
-			<h5>Water Heater: Cost and Carbon Implications</h5>
-		</div>
-		<div style="display: flex;">
-			<img src='data:image/png;base64,{{ annualCostGraph2 }}' alt="Annual Costs Graph" style="max-width: 50%; max-height: 100vh;">
-			<div style="flex: 1;">
-				<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
-					<thead>
-						<tr>
-							<th>Estimate 15 Year Savings of:</th>
-							<th>Carbon Savings</th>
-							<th>% Reduction</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>{{ estmSavings2 }}</td>
-							<td>{{ carbonSavings2 }}</td>
-							<td>{{ reduction2 }}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-		</div>
-		{% endif %}
-		<div style="page-break-before: always;"></div>
-		<div>
-			<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/ac21b95d-c1f8-4624-9b53-e0d07ef10ed5.png" alt="Install Includes" style="max-width: 100%; max-height: 100vh;">
-		</div>
-		<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter" , sans-serif;">
-			<h5>Protect Your Investment: Maintenance and Extended Labor Warranty Packages</h5>
-		</div>
-		<div style="display: flex;">
-
-			<div style="flex: 1;">
-				<table style="font-size: 10pt; font-family: 'Inter" , sans-serif;">
-					<thead>
-						<tr>
-							<th>Package</th>
-							<th>Maintenance Visits</th>
-							<th>Cost</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for option in maintenanceTable %}
-						<tr>
-							<td>{{ option.package }}</td>
-							<td>{{ option.maintenance_visits }}</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-			<div style="margin-right: 20px;"></div>
-			<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/0e9c8e54-a3a8-42f6-841d-ebc52cc64112.png" alt="Maintenance Pic" style="max-width: 25%; max-height: 100vh;">
-		</div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/0e9c8e54-a3a8-42f6-841d-ebc52cc64112.png" alt="Maintenance Pic" style="max-width: 25%; max-height: 100vh;">
+	</div>
 	</div>
 	<div>
 		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/c3b268cc-4e5d-4982-906a-42a28aad5a2c.png" alt="Maintenance Graphic" style="max-width: 100%; max-height: 100vh;">
@@ -423,8 +413,9 @@
 	</div>
 
 	<div style="page-break-before: always;"></div>
-	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter" , sans-serif;">
-		<h5>Elephant Energy Service Agreement</h5>
+
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		Elephant Energy Service Agreement
 	</div>
 	<!DOCTYPE html>
 	<html lang="en">
@@ -436,14 +427,12 @@
 		<style>
 			body {
 				font-size: 10pt;
-				font-family: 'Inter" , sans-serif;
-
+				font-family: 'Inter', sans-serif;
 			}
 		</style>
 	</head>
 
 	<body>
-
 		<p><strong>THIS SERVICES AGREEMENT</strong> (this "<strong>Agreement</strong>") is entered into on the date Customer signs this document (the "<strong>Effective Date</strong>") by and between Elephant Energy, Inc., a Delaware corporation ("<strong>Elephant Energy</strong>"), and <em>insert customer name here</em> ("<strong>Customer</strong>").</p>
 
 		<p>By signing below, the parties indicate they have read and agreed to the Elephant Energy Services Agreement, Standard Terms, and Proposal as of the Effective Date, contained and referenced in these slides.</p>
