@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Plumbing Scope of Work</title>
+	<script src="https://apitemplateio.s3-ap-southeast-1.amazonaws.com/static/js/autofonts-bundle.js"></script>
+	<style>
+		body {
+			-webkit-font-smoothing: antialiased;
+			background: white;
+		}
+
+		.center-text {
+			text-align: center;
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+		table.custom-table td {
+			white-space: normal;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/400bd1ca-d72b-4da7-8252-c0a8d6742c8d.png" alt="Elephant Logo" width="111" height="100">
+		<h1 class="center-text" style="font-family: 'Roboto', sans-serif; font-size: 20px;">Plumbing Scope of Work</h1>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Project Overview</p>
+		<style>
+			table {
+				font-family: 'Roboto', sans-serif;
+				font-size: 10pt;
+				border-collapse: collapse;
+			}
+
+			td {
+				padding: 8px;
+				border: 1px solid #dddddd;
+			}
+
+			strong {
+				font-weight: normal;
+			}
+		</style>
+
+		<table>
+			<tr>
+				<td><strong>Project Manager</strong></td>
+				<td>{{ projectManager }}</td>
+			</tr>
+			<tr>
+				<td><strong>Project Address</strong></td>
+				<td>{{ projectAddress }}</td>
+			</tr>
+			<tr>
+				<td><strong>Customer Name</strong></td>
+				<td>{{ customerName }}</td>
+			</tr>
+			<tr>
+				<td><strong>Customer Email</strong></td>
+				<td>{{ customerEmail }}</td>
+			</tr>
+			<tr>
+				<td><strong>Customer Phone</strong></td>
+				<td>{{ customerPhone }}</td>
+			</tr>
+		</table>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Home Overview</p>
+		<style>
+			table {
+				font-family: 'Roboto', sans-serif;
+				font-size: 10pt;
+				border-collapse: collapse;
+			}
+
+			td {
+				padding: 8px;
+				border: 1px solid #dddddd;
+			}
+
+			strong {
+				font-weight: normal;
+			}
+		</style>
+
+		<table>
+			<tr>
+				<td><strong>Type of Home</strong></td>
+				<td>{{ homeType }}</td>
+			</tr>
+			<tr>
+				<td><strong>Wall Type</strong></td>
+				<td>{{ wallType }}</td>
+			</tr>
+		</table>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Other Work</p>
+		<style>
+			table {
+				font-family: 'Roboto', sans-serif;
+				font-size: 10pt;
+				border-collapse: collapse;
+			}
+
+			td {
+				padding: 8px;
+				border: 1px solid #dddddd;
+			}
+
+			strong {
+				font-weight: normal;
+			}
+		</style>
+
+		<table>
+			<tr>
+				<td><strong>Electrical</strong></td>
+				<td>{{ electInstaller }}</td>
+				<td><strong>Date</strong></td>
+				<td>{{electInstallDate}}</td>
+			</tr>
+			<tr>
+				<td><strong>HVAC</strong></td>
+				<td>{{ hvacInstaller }}</td>
+				<td><strong>Date</strong></td>
+				<td>{{hvacInstallDate}}</td>
+			</tr>
+		</table>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Install Summary</p>
+		<div style="background-color: #C0CFFF; font-family: 'Roboto', sans-serif; font-size: 10pt;">
+			<table style="border-collapse: collapse;">
+				<tr>
+					<td><strong>Overview</strong></td>
+					<td>{{ overview }}</td>
+				</tr>
+				<tr>
+					<td><strong>Major Project Risks</strong></td>
+					<td>{{ majorProjectRisks }}</td>
+				</tr>
+			</table>
+		</div>
+
+		<style>
+			table {
+				font-family: 'Roboto', sans-serif;
+				font-size: 10pt;
+				border-collapse: collapse;
+			}
+
+			td {
+				padding: 8px;
+				border: 1px solid #dddddd;
+			}
+
+			strong {
+				font-weight: normal;
+			}
+		</style>
+
+		<table>
+			<tr>
+				<td><strong>Estimated Labor Hours</strong></td>
+				<td>{{ estmLaborHours }}</td>
+				<td>Installers Required</td>
+				<td>{{installersReq}}</td>
+				<td><strong>Asking Offer (w/ Permits) </strong></td>
+				<td>{{ askingOffer }}</td>
+			</tr>
+		</table>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Equipment for Installer to Order</p>
+		{% if installEquip and installEquip is defined %}
+		<div>
+			<style>
+				.custom-table {
+					border-collapse: collapse;
+					width: 100%;
+					font-size: 8pt;
+				}
+
+				.custom-table th,
+				.custom-table td {
+					border: 1px solid #dddddd;
+					text-align: left;
+					padding: 8px;
+				}
+
+				.custom-table th {
+					background-color: #f2f2f2;
+				}
+			</style>
+
+			{{ installEquip | render_table(table_class='custom-table') }}
+		</div>
+		{% endif %}
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: bold;">Water Heater</p>
+		<div>
+			<style>
+				.custom-table {
+					border-collapse: collapse;
+					width: 100%;
+					font-size: 8pt;
+				}
+
+				.custom-table th,
+				.custom-table td {
+					border: 1px solid #dddddd;
+					text-align: left;
+					padding: 8px;
+				}
+
+				.custom-table th {
+					background-color: #f2f2f2;
+				}
+			</style>
+			{{ waterHeater | render_table(table_class='custom-table') }}
+		</div>
+		<div style="margin-bottom: 20px;"></div>
+
+		{{systemReqs}}
+
+		<div>
+			<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Permitting Information</p>
+		</div>
+		<div>
+			<p style="font-family: 'Roboto', sans-serif; font-size: 10x;">Please pull permits before the day of the install and send to finance@elephantenergy.com.
+				Cost of permits is included in the asking offer.</p>
+		</div>
+		<div>
+			<style>
+				.custom-table {
+					border-collapse: collapse;
+					width: 100%;
+					font-size: 8pt;
+				}
+
+				.custom-table th,
+				.custom-table td {
+					border: 1px solid #dddddd;
+					text-align: left;
+					padding: 8px;
+				}
+
+				.custom-table th {
+					background-color: #f2f2f2;
+				}
+			</style>
+			{{ permitInfo | render_table(table_class='custom-table') }}
+		</div>
+		{{newElectService}}
+		<div style="margin-bottom: 50px;"></div>
+
+		<!DOCTYPE html>
+		<html>
+
+		<head>
+			<title>Final Installation Checklist</title>
+			<style>
+				body {
+					font-family: Arial, sans-serif;
+					line-height: 1.6;
+					font-size: 8pt;
+				}
+
+				.checklist-item {
+					font-weight: normal;
+					margin-bottom: 5px;
+				}
+			</style>
+		</head>
+
+		<body>
+			<h2>Final Installation Checklist</h2>
+			<ol>
+				<li class="checklist-item">Condensate safely conveyed to drain or exterior. (Note: condensate is neutral water and does not require special pipe material).</li>
+				<li class="checklist-item">Proper wire gauge is used.</li>
+				<li class="checklist-item">T&P valve is properly plumbed.</li>
+				<li class="checklist-item">Wiring is grounded with proper gauge.</li>
+				<li class="checklist-item">Water heater is on minimum R-10 foam pad if in unconditioned space or on concrete floor.</li>
+				<li class="checklist-item">Seismic strapping is employed, as required by local jurisdiction.</li>
+				<li class="checklist-item">Pipe insulation is minimum R-3 or local code — whichever is greater.</li>
+				<li class="checklist-item">Correct space is provided around the heat pump (per manufacturer’s instructions).</li>
+				<li class="checklist-item">Heated water circulation systems, if present, are configured to pump only on demand for hot water within the occupancy.</li>
+				<li class="checklist-item">Recirculation loop (if present) returns pipe to cold inlet of water heater.</li>
+				<li class="checklist-item">Water heater is positioned with clear intake air path, and oriented to minimize exhaust air drafts.</li>
+				<li class="checklist-item">Water heater is positioned for easy access to the control panel and to change or service the filter.</li>
+				<li class="checklist-item">Connections to the water heater are located so that the water heater can be easily removed for repair or replacement.</li>
+				<li class="checklist-item">Make-up air volume around the water heater is large enough, or make-up air is provided as per the manufacturer’s requirements.</li>
+				<li class="checklist-item">Mode of operation is set to hybrid at a minimum, and preferably to heat-pump only.</li>
+			</ol>
+		</body>
+
+		</html>
+<body>
+		<div>
+			<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Home Layout and Mockups</p>
+		</div>
+		<p><strong>Aerial of Home</strong></p>
+		<img src="data:image/png;base64, {{aerialPhoto}}" alt="Aerial of Home" style="max-width: 100%; height: auto;">
+		<p><strong>Additional Photos</strong></p>
+		<img src="data:image/png;base64, {{addtlPhoto1}}" alt="Additional Photo 1" style="max-width: 100%; height: auto;">
+		<img src="data:image/png;base64, {{addtlPhoto2}}" alt="Additional Photo 2" style="max-width: 100%; height: auto;">
+		<img src="data:image/png;base64, {{addtlPhoto3}}" alt="Additional Photo 3" style="max-width: 100%; height: auto;">
+		<img src="data:image/png;base64, {{addtlPhoto4}}" alt="Additional Photo 4" style="max-width: 100%; height: auto;">
+		<img src="data:image/png;base64, {{addtlPhoto5}}" alt="Additional Photo 5" style="max-width: 100%; height: auto;">
+    </body>
