@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Aeroseal Scope of Work</title>
+	<script src="https://apitemplateio.s3-ap-southeast-1.amazonaws.com/static/js/autofonts-bundle.js"></script>
+	<style>
+		body {
+			-webkit-font-smoothing: antialiased;
+			background: white;
+		}
+
+		.center-text {
+			text-align: center;
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+		table.custom-table td {
+			white-space: normal;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/400bd1ca-d72b-4da7-8252-c0a8d6742c8d.png" alt="Elephant Logo" width="111" height="100">
+		<h1 class="center-text" style="font-family: 'Roboto', sans-serif; font-size: 20px;">Aeroseal Scope of Work</h1>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Project Overview</p>
+		<style>
+			table {
+				font-family: 'Roboto', sans-serif;
+				font-size: 10pt;
+				border-collapse: collapse;
+			}
+
+			td {
+				padding: 8px;
+				border: 1px solid #dddddd;
+			}
+
+			strong {
+				font-weight: normal;
+			}
+		</style>
+
+		<table>
+			<tr>
+				<td><strong>Project Manager</strong></td>
+				<td>{{ projectManager }}</td>
+			</tr>
+			<tr>
+				<td><strong>Project Address</strong></td>
+				<td>{{ projectAddress }}</td>
+			</tr>
+			<tr>
+				<td><strong>Customer Name</strong></td>
+				<td>{{ customerName }}</td>
+			</tr>
+			<tr>
+				<td><strong>Customer Email</strong></td>
+				<td>{{ customerEmail }}</td>
+			</tr>
+			<tr>
+				<td><strong>Customer Phone</strong></td>
+				<td>{{ customerPhone }}</td>
+			</tr>
+		</table>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Home Overview</p>
+		<style>
+			table {
+				font-family: 'Roboto', sans-serif;
+				font-size: 10pt;
+				border-collapse: collapse;
+			}
+
+			td {
+				padding: 8px;
+				border: 1px solid #dddddd;
+			}
+
+			strong {
+				font-weight: normal;
+			}
+		</style>
+
+		<table>
+			<tr>
+				<td><strong>Type of Home</strong></td>
+				<td>{{ homeType }}</td>
+			</tr>
+			<tr>
+				<td><strong>Wall Type</strong></td>
+				<td>{{ wallType }}</td>
+			</tr>
+		</table>
+
+		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Install Summary</p>
+		<div style="background-color: #C0CFFF; font-family: 'Roboto', sans-serif; font-size: 10pt;">
+			<table style="border-collapse: collapse;">
+				<tr>
+					<td><strong>Overview</strong></td>
+					<td>{{ overview }}</td>
+				</tr>
+				<tr>
+					<td><strong>Major Project Risks</strong></td>
+					<td>{{ majorProjectRisks }}</td>
+				</tr>
+			</table>
+		</div>
+
+
+		<style>
+			table {
+				font-family: 'Roboto', sans-serif;
+				font-size: 10pt;
+				border-collapse: collapse;
+			}
+
+			td {
+				padding: 8px;
+				border: 1px solid #dddddd;
+			}
+
+			strong {
+				font-weight: normal;
+			}
+		</style>
+
+		<table>
+			<tr>
+				<td><strong># of Systems to Seal</strong></td>
+				<td>{{ systemsSeal }}</td>
+				<td><strong>Asking Offer</strong></td>
+				<td>{{ askingOffer }}</td>
+			</tr>
+		</table>
