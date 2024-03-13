@@ -64,8 +64,14 @@
 	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/e5ba3a71-76fe-42f3-bf0b-e4e0d34571c0.png" alt="Elephant Way">
 
 	<div style="page-break-before: always;"></div>
+	{% if coMap is defined %}
+	<img src="data:image/png;base64,{{ coMap }}" alt="CO Map" style="max-width: 100%; max-height: 100vh;">
+	{% endif %}
 
-	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/df5d589d-61c9-4669-932e-8988c0cc1497.png" alt="CO Map" style="max-width: 100%; max-height: 100vh;">
+	{% if maMap is defined and maMap %}
+	<img src="data:image/png;base64,{{ maMap }}" alt="MA Map" style="max-width: 100%; max-height: 100vh;">
+	{% endif %}
+
 	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/f3936e22-ade0-422a-8ce3-3f1b6bc69440.png" alt="Why Electrify" style="max-width: 100%; max-height: 100vh;">
 
 	<div style="page-break-before: always;"></div>
