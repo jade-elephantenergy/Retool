@@ -289,3 +289,51 @@
 		<div>
 			<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Home Layout and Mockups</p>
 		</div>
+
+		<body>
+			{%if aerialPhoto is defined and aerialPhoto %}
+			<p><strong>Aerial of Home</strong></p>
+			<img src="{{aerialPhoto}}" alt="Aerial of Home" style="max-width: 100%; height: auto;">
+			{% endif %}
+			{% if condenserLocMockup is defined and condenserLocMockup %}
+			<p><strong>Mockup of Condenser Location</strong></p>
+			<img src="{{condenserLocMockup}}" alt="Condenser Location" style="max-width: 100%; height: auto;">
+			{% endif %}
+			{% if linesetMockup is defined and linesetMockup %}
+			<p><strong>Mockup of Lineset Route</strong></p>
+			<img src="{{linesetMockup}}" alt="Lineset Route" style="max-width: 100%; height: auto;">
+			{% endif %}
+			{%if ahuLocPhoto1 is defined and ahuLocPhoto1 %}
+			<p><strong>AHU Location</strong></p>
+			<img src="{{ahuLocPhoto1}}" alt="AHU Location 1" style="max-width: 100%; height: auto;">
+			{% endif %}
+			{% if ahuLocPhoto2 is defined and ahuLocPhoto2 %}
+			<img src="{{ahuLocPhoto2}}" alt="AHU Location 2" style="max-width: 100%; height: auto;">
+			{% endif %}
+			{%if ahuLocPhoto3 is defined and ahuLocPhoto3 %}
+			<img src="{{ahuLocPhoto3}}" alt="AHU Location 3" style="max-width: 100%; height: auto;">
+			{% endif %}
+			{% if thermostatPhoto1 is defined and thermostatPhoto1 %}
+			<p><strong>Thermostat Diagram(s)</strong></p>
+			<img src="{{thermostatPhoto1}}" alt="Thermostat Diagram 1" style="max-width: 100%; height: auto;">
+			{% endif %}
+			{% if thermostatPhoto2 is defined and thermostatPhoto2 %}
+			<img src="{{thermostatPhoto2}}" alt="Thermostat Diagram 2" style="max-width: 100%; height: auto;">
+			{% endif %}
+			{% if addtlPhoto1 is defined and addtlPhoto1 %}
+			<p><strong>Additional Photos</strong></p>
+			<img src="{{addtlPhoto1}}" alt="Additional Photo 1" style="max-width: 100%; height: auto;">
+			{% endif %}
+			{% if addtlPhoto2 is defined and addtlPhoto2 %}
+			<img src="{{addtlPhoto2}}" alt="Additional Photo 2" style="max-width: 100%; height: auto;">
+			{% endif %}
+			{% if addtlPhoto3 is defined and addtlPhoto3 %}
+			<img src="{{addtlPhoto3}}" alt="Additional Photo 3" style="max-width: 100%; height: auto;">
+			{% endif %}
+			{% if addtlPhoto4 is defined and addtlPhoto4 %}
+			<img src="{{addtlPhoto4}}" alt="Additional Photo 4" style="max-width: 100%; height: auto;">
+			{% endif %}
+			{% if addtlPhoto5 is defined and addtlPhoto5 %}
+			<img src="{{addtlPhoto5}}" alt="Additional Photo 5" style="max-width: 100%; height: auto;">
+			{% endif %}
+		</body>
