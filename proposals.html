@@ -49,11 +49,13 @@
 		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/400bd1ca-d72b-4da7-8252-c0a8d6742c8d.png" alt="Elephant Energy Logo" width="111" height="100">
 		<p class="center-text">Home Comfort Proposal</p>
 		<div style="font-size: 10pt;">
-			<p>Prepared For: {{customerName}}</p>
+			<p>Prepared For: </p>
+			<p>{{customerName}}</p>
 			<p>{{customerAddress}}</p>
 			<p>{{customerEmail}}</p>
 			<p>{{customerPhone}}</p>
-			<p>Prepared By: {{hca}}</p>
+			<p>Prepared By: </p>
+			<p>{{hca}}</p>
 			<p>{{hcaEmail}}</p>
 			<p>{{hcaPhone}}</p>
 			<p>Date: {{date}}</p>
@@ -61,24 +63,39 @@
 	</div>
 
 	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/ad150daa-a9f6-4e7c-b537-fe7b8e45a0d9.png" alt="Elephant Scene">
-	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/e5ba3a71-76fe-42f3-bf0b-e4e0d34571c0.png" alt="Elephant Way">
+	<div style="margin-bottom: 50px;"></div>
+
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		The Elephant way is different
+	</div>
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/ba7b4997-9ee9-489f-89e0-19ae0671d804.png" alt="Elephant Way Table">
 
 	<div style="page-break-before: always;"></div>
-	{% if coMap is defined %}
-	<img src="data:image/png;base64,{{ coMap }}" alt="CO Map" style="max-width: 100%; max-height: 100vh;">
+	{% if coMap is true %}
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		We're the largest electrification company in the Front Range, and have helped hundreds of customers electrify
+	</div>
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/b05ca965-6a6b-438c-817d-09d4f35e9fe4.png" alt="CO Map" style="max-width: 100%; max-height: 100vh;">
 	{% endif %}
 
-	{% if maMap is defined and maMap %}
-	<img src="data:image/png;base64,{{ maMap }}" alt="MA Map" style="max-width: 100%; max-height: 100vh;">
+	{% if maMap is true %}
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		We're the largest electrification company in the Front Range, and have helped hundreds of customers electrify
+	</div>
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/4297ed83-84f8-47b8-9617-89cd34bc173a.png" alt="MA Map" style="max-width: 100%; max-height: 100vh;">
 	{% endif %}
 
-	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/f3936e22-ade0-422a-8ce3-3f1b6bc69440.png" alt="Why Electrify" style="max-width: 100%; max-height: 100vh;">
+	<div style="margin-top: 50px;"></div>
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		Why electrify?
+	</div>
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/8287bdff-f169-40ef-8d7d-1869819c9b2b.png" alt="Why Electrify" style="max-width: 100%; max-height: 100vh;">
 
 	<div style="page-break-before: always;"></div>
-
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		System Designs for Consideration
 	</div>
+	<p>*This pricing is valid for 14 days following the receipt of this proposal</p>
 	<div style="display: flex;">
 		<div style="flex: 1; margin-right: 10px;">
 			<table style="font-size:10pt;">
@@ -286,7 +303,7 @@
 	</div>
 	{% endif %}
 
-	{% if coldGraph %}
+	{% if coldGraph is true %}
 	<div style="page-break-before: always;"></div>
 	<div style="background-color: #f4f4f4; padding: 3px;">
 		<h5><strong>Energy Efficiency:</strong></h5>
@@ -295,9 +312,8 @@
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		<h5>Sizing a System for Your Unique Home</h5>
 		<div style="display: flex;">
-			<img src='data:image/png;base64,{{ coldGraph }}' alt="Cold Graph" style="max-width: 50%; max-height: 100vh;">
-
-			<div style="flex: 1;">
+			<img src='https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/ba9d1c1e-6ca0-486c-af7c-f47d262c70c5.png' alt="Cold Graph" style="max-width: 70%; max-height: 100vh;">
+			<div style="display: flex;">
 				<table style="font-size: 8pt; font-family: 'Inter', sans-serif;">
 					<thead>
 						<tr>
@@ -311,7 +327,7 @@
 						<tr>
 							<td>{{ option.temperature }}</td>
 							<td>{{ option.heating_need }}</td>
-							<td>{{ option.hpOutput }}</td>
+							<td>{{ option.hp_Output }}</td>
 						</tr>
 						{% endfor %}
 					</tbody>
@@ -319,15 +335,16 @@
 			</div>
 		</div>
 	</div>
-	<p>We design and size your system to ensure that during the coldest and the warmest days of the year, you can maintain comfortable temperatures inside.</p>
 
-	<div style="margin-bottom: 50px;"></div>
+	<p>We design and size your system to ensure that during the coldest and the warmest days of the year, you can maintain comfortable temperatures inside.</p>
+	<div style="margin-bottom: 30px;"></div>
+
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		<h5>Heat Pump: Cost and Carbon Implications</h5>
 	</div>
 	<div style="display: flex;">
-		<img src='data:image/png;base64,{{ annualCostGraph }}' alt="Annual Costs Graph" style="max-width: 50%; max-height: 100vh;">
-		<div style="flex: 1;">
+		<img src='https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/0c903f18-7ec0-4f10-9a96-1b05e823b105.png' alt="Annual Costs Graph" style="max-width: 75%; max-height: 100vh;">
+		<div style="display: flex;">
 			<table style="font-size: 8pt; font-family: 'Inter', sans-serif;">
 				<thead>
 					<tr>
@@ -348,43 +365,52 @@
 	</div>
 	{% endif %}
 
-	{% if hpwhSize %}
+	{% if hpwhSize is true %}
 	<div style="page-break-before: always;"></div>
-	<div>
-		<img src="data:image/png;base64,{{ hpwhSize }}" alt="HPWH Size Options" style="max-width: 100%; max-height: 100vh;">
-	</div>
-	<div style="margin-bottom: 50px;"></div>
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
-		<h5>Water Heater: Cost and Carbon Implications</h5>
+		Sizing Options: Heat Pump Water Heaters
 	</div>
-	<div style="display: flex;">
-		<img src='data:image/png;base64,{{ annualCostGraph2 }}' alt="Annual Costs Graph" style="max-width: 50%; max-height: 100vh;">
-		<div style="flex: 1;">
-			<table style="font-size: 8pt; font-family: 'Inter', sans-serif;">
-				<thead>
-					<tr>
-						<th>Estimate 15 Year Savings of:</th>
-						<th>Carbon Savings</th>
-						<th>% Reduction</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>{{ estmSavings2 }}</td>
-						<td>{{ carbonSavings2 }}</td>
-						<td>{{ reduction2 }}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+	<div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/33b1699a-265e-45ad-8e8e-d9b0daedfab5.png" alt="HPWH Size Options" style="max-width: 100%; max-height: 100vh;">
 	</div>
 	{% endif %}
-	<div style="page-break-before: always;"></div>
-	<div>
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/ac21b95d-c1f8-4624-9b53-e0d07ef10ed5.png" alt="Install Includes" style="max-width: 100%; max-height: 100vh;">
-	</div>
+
+	{% if hpwhImplications is true %}
+	<div style="margin-top: 30px;"></div>
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
-		<h5>Protect Your Investment: Maintenance and Extended Labor Warranty Packages</h5>
+		Water Heater: Cost and Carbon Implications
+	</div>
+
+	<img src='https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/3305e632-8a2f-46dc-b83c-08388853e88e.png' alt="Annual Costs Graph" style="max-width: 80%; max-height: 100vh;">
+	<table style="font-size: 8pt; font-family: 'Inter', sans-serif;">
+		<thead>
+			<tr>
+				<th>Estimate 15 Year Savings of:</th>
+				<th>Carbon Savings</th>
+				<th>% Reduction</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ estmSavings2 }}</td>
+				<td>{{ carbonSavings2 }}</td>
+				<td>{{ reduction2 }}</td>
+			</tr>
+		</tbody>
+	</table>
+	{% endif %}
+
+	<div style="page-break-before: always;"></div>
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		Installation includes everything (really!) - and one year warranty to ensure your system is perfect
+	</div>
+	<div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/fb9b2a11-fdd2-41f2-b062-a2bdf07e50dd.png" alt="Install Includes" style="max-width: 100%; max-height: 100vh;">
+	</div>
+	<div style="margin-bottom: 50px;"></div>
+
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		Protect your investment: Maintenance and extended labor warranty packages
 	</div>
 	<div style="display: flex;">
 		<div style="flex: 1;">
@@ -412,11 +438,48 @@
 	</div>
 	<div>
 		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/c3b268cc-4e5d-4982-906a-42a28aad5a2c.png" alt="Maintenance Graphic" style="max-width: 100%; max-height: 100vh;">
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/f6018858-05e7-4ad7-bc5d-db5082f57485.png" alt="WTE" style="max-width: 100%; max-height: 100vh;">
+
+		<div style="page-break-before: always;"></div>
+		<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+			What to expect: Planning and installation
+		</div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/85e8aa16-7115-4a18-8500-2329f2c1afba.png" alt="WTE" style="max-width: 100%; max-height: 100vh;">
 	</div>
-	<div>
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/9412c874-2b9c-4666-8506-5be374263372.png" alt="Invoice Info" style="max-width: 100%; max-height: 100vh;">
+	<div style="margin-bottom: 75px;"></div>
+
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		Elephant Energy Invoicing and Payments
 	</div>
+	<div style="display: flex; font-size: 10pt;">
+		<div style="flex: 2; padding-right: 20px;">
+			<h2><strong>Payment Schedule</strong></h2>
+			<p>We invoice in the following way:</p>
+			<ul>
+				<li>- 25% down payment upon deal close (your signature!)</li>
+				<li>- 25% upon scheduling your project (getting a date on the calendar!)</li>
+				<li>- Remainder upon project completion</li>
+			</ul>
+			<div style="margin-bottom: 10px;"></div>
+			<h2><strong>Payment Terms</strong></h2>
+			<p>All payments are due 15 days after receipt of invoice. Late payments shall accrue interest at rate within your contract.</p>
+			<div style="margin-bottom: 10px;"></div>
+			<h2><strong>Invoice Delivery</strong></h2>
+			<p>You will receive all invoices via email from Freshbooks. The email address associated with invoicing is <strong>lucas@elephantenergy.com</strong>.</p>
+			<div style="margin-bottom: 10px;"></div>
+			<h2><strong>Accepted Forms of Payment</strong></h2>
+			<p>We accept checks and direct payments via ACH. <strong>ACH is preferred.</strong> Direct payments are supported by Plaid (via Freshbooks), which will ask you to link your bank account. We can also accept credit cards with an additional processing fee. The fee varies based on the credit card but typically is 2.8-3.0%. Please inform us if you would like to use this option.</p>
+			<div style="margin-bottom: 10px;"></div>
+			<p>Checks should be made payable to:</p>
+			<p>Elephant Energy<br>
+				1390 Yellow Pine Avenue<br>
+				Boulder, CO 80304</p>
+		</div>
+		<div style="flex: 1;">
+			<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/eab71ef2-41b7-479f-9fb3-4ad6b97855d4.png" alt="Invoice Info" style="max-width: 100%; max-height: 200vh;">
+		</div>
+	</div>
+
+
 
 	<div style="page-break-before: always;"></div>
 
@@ -443,7 +506,7 @@
 
 		<p>By signing below, the parties indicate they have read and agreed to the Elephant Energy Services Agreement, Standard Terms, and Proposal as of the Effective Date, contained and referenced in these slides.</p>
 
-		<p>Elephant Energy, Inc. hereby proposes to furnish the specified equipment, materials, and labor for the sum of $<em>insert amount due to Elephant here</em>. A downpayment of $<em>insert deposit amount here</em> is due and payable alongside the execution of this contract.</p>
+		<p>Elephant Energy, Inc. hereby proposes to furnish the specified equipment, materials, and labor for the sum of ${{amountDue}}. A downpayment of ${{depositAmount}} is due and payable alongside the execution of this contract.</p>
 
 		<p><strong>Elephant Energy</strong> ____________________________________________________ Date___________________________</p>
 
