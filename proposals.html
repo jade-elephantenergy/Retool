@@ -46,50 +46,49 @@
 
 <body>
 	<div>
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/400bd1ca-d72b-4da7-8252-c0a8d6742c8d.png" alt="Elephant Energy Logo" width="111" height="100">
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/247021a6-d43b-4f50-82ad-d5d46c149d44.png" alt="Elephant Energy Logo" width="90" height="80">
 		<p class="center-text">Home Comfort Proposal</p>
-		<div style="font-size: 10pt;">
-			<p>Prepared For: </p>
+		<div style="font-size: 8pt;">
+			<p><strong>Prepared For:</strong></p>
 			<p>{{customerName}}</p>
 			<p>{{customerAddress}}</p>
 			<p>{{customerEmail}}</p>
 			<p>{{customerPhone}}</p>
-			<p>Prepared By: </p>
+			<p><strong>Prepared By:</strong></p>
 			<p>{{hca}}</p>
 			<p>{{hcaEmail}}</p>
 			<p>{{hcaPhone}}</p>
-			<p>Date: {{date}}</p>
+			<p><strong>Date: {{date}}</strong></p>
 		</div>
 	</div>
 
-	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/ad150daa-a9f6-4e7c-b537-fe7b8e45a0d9.png" alt="Elephant Scene">
-	<div style="margin-bottom: 50px;"></div>
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/a5158a03-f627-4626-bdaf-19d4c38f859d.png" alt="Elephant Scene">
 
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		The Elephant way is different
 	</div>
-	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/ba7b4997-9ee9-489f-89e0-19ae0671d804.png" alt="Elephant Way Table">
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/517dbe7f-4166-47a8-aa3a-d09dba65a9fd.png" alt="Elephant Way Table">
 
 	<div style="page-break-before: always;"></div>
 	{% if coMap is true %}
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		We're the largest electrification company in the Front Range, and have helped hundreds of customers electrify
 	</div>
-	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/b05ca965-6a6b-438c-817d-09d4f35e9fe4.png" alt="CO Map" style="max-width: 100%; max-height: 100vh;">
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/1360b225-a696-4bd4-91a2-c347fbcc44a9.png" alt="CO Map" style="max-width: 100%; max-height: 100vh;">
 	{% endif %}
 
 	{% if maMap is true %}
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		We're the largest electrification company in the Front Range, and have helped hundreds of customers electrify
 	</div>
-	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/4297ed83-84f8-47b8-9617-89cd34bc173a.png" alt="MA Map" style="max-width: 100%; max-height: 100vh;">
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/5c6efbcb-6da9-4053-b0b6-0f9de830a60f.png" alt="MA Map" style="max-width: 100%; max-height: 100vh;">
 	{% endif %}
 
 	<div style="margin-top: 50px;"></div>
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		Why electrify?
 	</div>
-	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/8287bdff-f169-40ef-8d7d-1869819c9b2b.png" alt="Why Electrify" style="max-width: 100%; max-height: 100vh;">
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/b6679584-f661-4cc9-a675-35252fa71257.png" alt="Why Electrify" style="max-width: 100%; max-height: 100vh;">
 
 	<div style="page-break-before: always;"></div>
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
@@ -302,9 +301,9 @@
 		</div>
 	</div>
 	{% endif %}
+	<div style="page-break-after: always;"></div>
 
-	{% if coldGraph is true %}
-	<div style="page-break-before: always;"></div>
+	{% if hddSlides is true and coldGraph is true %}
 	<div style="background-color: #f4f4f4; padding: 3px;">
 		<h5><strong>Energy Efficiency:</strong></h5>
 		<p>Investing in energy efficiency reduces your operating costs and allows you to more confidently down-size your Heat Pump</p>
@@ -312,7 +311,7 @@
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		<h5>Sizing a System for Your Unique Home</h5>
 		<div style="display: flex;">
-			<img src='https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/ba9d1c1e-6ca0-486c-af7c-f47d262c70c5.png' alt="Cold Graph" style="max-width: 70%; max-height: 100vh;">
+			<img src='https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/ec886a28-4ca2-4e6c-b4d2-345852bbcb4c.png' alt="Cold Graph" style="max-width: 70%; max-height: 100vh;">
 			<div style="display: flex;">
 				<table style="font-size: 8pt; font-family: 'Inter', sans-serif;">
 					<thead>
@@ -338,12 +337,11 @@
 
 	<p>We design and size your system to ensure that during the coldest and the warmest days of the year, you can maintain comfortable temperatures inside.</p>
 	<div style="margin-bottom: 30px;"></div>
-
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		<h5>Heat Pump: Cost and Carbon Implications</h5>
 	</div>
 	<div style="display: flex;">
-		<img src='https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/0c903f18-7ec0-4f10-9a96-1b05e823b105.png' alt="Annual Costs Graph" style="max-width: 75%; max-height: 100vh;">
+		<img src='https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/943b450e-2380-4974-a5cf-e790e365c910.png' alt="HP Annual Costs Graph" style="max-width: 75%; max-height: 100vh;">
 		<div style="display: flex;">
 			<table style="font-size: 8pt; font-family: 'Inter', sans-serif;">
 				<thead>
@@ -365,23 +363,21 @@
 	</div>
 	{% endif %}
 
-	{% if hpwhSize is true %}
-	<div style="page-break-before: always;"></div>
+	{% if hddSlides is true and hpwhSize is true %}
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		Sizing Options: Heat Pump Water Heaters
 	</div>
 	<div>
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/33b1699a-265e-45ad-8e8e-d9b0daedfab5.png" alt="HPWH Size Options" style="max-width: 100%; max-height: 100vh;">
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/1e2b0010-f328-4110-91b2-78b7647569c4.png" alt="HPWH Size Options" style="max-width: 100%; max-height: 100vh;">
 	</div>
 	{% endif %}
 
 	{% if hpwhImplications is true %}
-	<div style="margin-top: 30px;"></div>
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		Water Heater: Cost and Carbon Implications
 	</div>
 
-	<img src='https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/3305e632-8a2f-46dc-b83c-08388853e88e.png' alt="Annual Costs Graph" style="max-width: 80%; max-height: 100vh;">
+	<img src='https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/230bf7ed-832e-4ad6-89b0-0af8b8575d7d.png' alt="HPWH Annual Costs Graph" style="max-width: 80%; max-height: 100vh;">
 	<table style="font-size: 8pt; font-family: 'Inter', sans-serif;">
 		<thead>
 			<tr>
@@ -400,15 +396,26 @@
 	</table>
 	{% endif %}
 
-	<div style="page-break-before: always;"></div>
+
+	{% if panelUpgrades is true %}
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		Your panel may need additional electrical capacity*
+	</div>
+	<p>Our goal is to complete your electrification project using your current panel, that said, ultimately an electrician is responsible for getting the panel up to code to pass inspection which may require <strong>one</strong> of the following measures and associated pricing changes:</p>
+	<div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/d9ef3d5b-d1e5-4379-9f59-0be466d87911.png" alt="Panel Upgrades" style="max-width: 100%; max-height: 100vh;">
+	</div>
+	<p>*An Elephant Energy representative will discuss any necessary change orders before installation so you may approve the updated scope of work and pricing before proceeding.</p>
+	{% endif %}
+
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		Installation includes everything (really!) - and one year warranty to ensure your system is perfect
 	</div>
 	<div>
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/fb9b2a11-fdd2-41f2-b062-a2bdf07e50dd.png" alt="Install Includes" style="max-width: 100%; max-height: 100vh;">
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/2250cb2c-8bd1-4a8b-9db6-4d0446580a0d.png" alt="Install Includes" style="max-width: 100%; max-height: 100vh;">
 	</div>
-	<div style="margin-bottom: 50px;"></div>
 
+	{% if maintenanceSlide is true %}
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		Protect your investment: Maintenance and extended labor warranty packages
 	</div>
@@ -433,52 +440,115 @@
 			</table>
 		</div>
 		<div style="margin-right: 20px;"></div>
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/0e9c8e54-a3a8-42f6-841d-ebc52cc64112.png" alt="Maintenance Pic" style="max-width: 25%; max-height: 100vh;">
-	</div>
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/201778db-032a-4130-836c-03b0895ddce2.png" alt="Maintenance Image" style="max-width: 25%; max-height: 100vh;">
 	</div>
 	<div>
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/c3b268cc-4e5d-4982-906a-42a28aad5a2c.png" alt="Maintenance Graphic" style="max-width: 100%; max-height: 100vh;">
-
-		<div style="page-break-before: always;"></div>
-		<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
-			What to expect: Planning and installation
-		</div>
-		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/85e8aa16-7115-4a18-8500-2329f2c1afba.png" alt="WTE" style="max-width: 100%; max-height: 100vh;">
+		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/1ef48448-ac52-4e8e-b340-0624d7052bc1.png" alt="Maintenance Graphic" style="max-width: 100%; max-height: 100vh;">
 	</div>
-	<div style="margin-bottom: 75px;"></div>
+	{% endif %}
+
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		What to expect: Planning and installation
+	</div>
+	<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/78ab1f9c-2e2a-4914-a1ca-32d1c747ffc0.png" alt="WTE Graphic" style="max-width: 100%; max-height: 100vh;">
 
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		Elephant Energy Invoicing and Payments
 	</div>
-	<div style="display: flex; font-size: 10pt;">
+	<div style="display: flex; font-size: 8pt;">
 		<div style="flex: 2; padding-right: 20px;">
-			<h2><strong>Payment Schedule</strong></h2>
+			<p><strong>Payment Schedule</strong></p>
 			<p>We invoice in the following way:</p>
 			<ul>
-				<li>- 25% down payment upon deal close (your signature!)</li>
-				<li>- 25% upon scheduling your project (getting a date on the calendar!)</li>
-				<li>- Remainder upon project completion</li>
+				<li> 25% down payment upon deal close (your signature!)</li>
+				<li> 25% upon scheduling your project (getting a date on the calendar!)</li>
+				<li> Remainder upon project completion</li>
 			</ul>
-			<div style="margin-bottom: 10px;"></div>
-			<h2><strong>Payment Terms</strong></h2>
+			<p><strong>Payment Terms</strong></p>
 			<p>All payments are due 15 days after receipt of invoice. Late payments shall accrue interest at rate within your contract.</p>
-			<div style="margin-bottom: 10px;"></div>
-			<h2><strong>Invoice Delivery</strong></h2>
+			<p><strong>Invoice Delivery</strong></p>
 			<p>You will receive all invoices via email from Freshbooks. The email address associated with invoicing is <strong>lucas@elephantenergy.com</strong>.</p>
-			<div style="margin-bottom: 10px;"></div>
-			<h2><strong>Accepted Forms of Payment</strong></h2>
+			<p><strong>Accepted Forms of Payment</strong></p>
 			<p>We accept checks and direct payments via ACH. <strong>ACH is preferred.</strong> Direct payments are supported by Plaid (via Freshbooks), which will ask you to link your bank account. We can also accept credit cards with an additional processing fee. The fee varies based on the credit card but typically is 2.8-3.0%. Please inform us if you would like to use this option.</p>
-			<div style="margin-bottom: 10px;"></div>
-			<p>Checks should be made payable to:</p>
+			<p><strong>Checks should be made payable to:</strong></p>
 			<p>Elephant Energy<br>
 				1390 Yellow Pine Avenue<br>
 				Boulder, CO 80304</p>
 		</div>
-		<div style="flex: 1;">
-			<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18066/25191/eab71ef2-41b7-479f-9fb3-4ad6b97855d4.png" alt="Invoice Info" style="max-width: 100%; max-height: 200vh;">
+		<div style="flex: 2;">
+			<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/4f1a9218-4354-4ada-a4cb-3e308ba666dd.png" alt="Invoice Sample" style="max-width: 100%; max-height: 100vh;">
 		</div>
 	</div>
 
+	{% if renuLoan is true %}
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		Financing your home upgrade - at zero money down
+	</div>
+	<div style="display: flex; font-size: 10pt;">
+		<div style="flex: 1; padding-right: 20px;">
+			<p>Elephant Energy offers financing through <strong>RENU, a statewide residential loan program</strong> that offers <strong>low-cost, long-term financing</strong> for climate-focused improvements.</p>
+			<p><strong>Who is eligible:</strong> Property owners of existing homes in Colorado.</p>
+			<ul>
+				<li> Primary, secondary, or income properties</li>
+				<li> Single family homes, townhomes, and condos</li>
+				<li> Shared heating or cooling systems are <strong>not</strong> eligible</li>
+			</ul>
+			<p><strong>What can be financed:</strong></p>
+			<ul>
+				<li> HVAC Equipment (heat pump, heat pump water heater)</li>
+				<li> EV Charging</li>
+				<li> Insulation and Air Sealing</li>
+				<li> Induction Stoves</li>
+			</ul>
+			<p><strong>How to participate:</strong> Learn more about the program at https://cocleanenergyfund.com/products/residential-products/#colorado-renu-loan. Applications can be submitted either with your Home Comfort Advisor or directly with the participating Credit Union!</p>
+			<ul>
+				<li> Westerra</li>
+				<li> Elevations</li>
+				<li> Clean Energy Credit Union</li>
+			</ul>
+		</div>
+		<div style="flex: 3;">
+			<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/c045b16f-51b9-462e-8bc8-76de80041613.png" alt="RENU Graphic" style="max-width: 100%; max-height: 500vh;">
+		</div>
+	</div>
+	{% endif %}
+
+	{%if heatLoan is true %}
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		Financing your home upgrade - for free!
+	</div>
+	<div style="display: flex; font-size: 10pt;">
+		<div style="flex: 1; padding-right: 20px;">
+			<p>We offer financing through the <strong>HEAT Loan, a financing program by Mass Save.</strong> It is designed to help homeowners in Massachusetts make energy-efficient improvements to their homes. It offers <strong>zero-interest loans</strong> to cover the costs of eligible energy-saving upgrades.</p>
+			<p><strong>Who is eligible:</strong> Homeowners and landlords with residential properties of one of the Mass Save sponsors, including Cape Light Compact, Eversource, National Grid, or Unitil.</p>
+			<p><strong>What can be financed:</strong></p>
+			<ul>
+				<li> HVAC Equipment (heat pump, heat pump water heater)</li>
+				<li> EV Charging</li>
+				<li> Insulation and Air Sealing</li>
+				<li> Induction Stoves</li>
+			</ul>
+			<p><strong>How to participate:</strong> Following your energy audit, complete the provided Intake Form. Then apply online at https://www.surveygizmo.com/s3/5171834/Heat-Loan-Applications. Once approved, you can choose a participating HEAT Loan lender to apply for the interest-free loan.</p>
+			<p>Learn more at https://www.masssave.com/residential/programs-and-services/financing</p>
+		</div>
+		<div style="flex: 3;">
+			<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/18329/25498/2c1624b8-4456-4478-8e4c-10f5f31f97b0.png" alt="HEAT Loan Image" style="max-width: 100%; max-height: 500vh;">
+		</div>
+	</div>
+	{% endif %}
+
+	{%if systemMockup1 is defined and systemMockup1 %}
+	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
+		System Mockups
+	</div>
+	<img src="data:image/png;base64, {{systemMockup1}}" alt="System Mockup 1" style="max-width: 100%; height: auto;">
+	{% endif %}
+	{%if systemMockup2 is defined and systemMockup2 %}
+	<img src="data:image/png;base64, {{systemMockup2}}" alt="System Mockup 2" style="max-width: 100%; height: auto;">
+	{% endif %}
+	{%if systemMockup3 is defined and systemMockup3 %}
+	<img src="data:image/png;base64, {{systemMockup3}}" alt="System Mockup 3" style="max-width: 100%; height: auto;">
+	{% endif %}
 
 
 	<div style="page-break-before: always;"></div>
@@ -486,7 +556,7 @@
 	<div style="font-size: 16pt; color: #8892e9; font-family: 'Inter', sans-serif;">
 		Elephant Energy Service Agreement
 	</div>
-	<!DOCTYPE html>
+
 	<html lang="en">
 
 	<head>
