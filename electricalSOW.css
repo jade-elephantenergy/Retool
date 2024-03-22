@@ -432,9 +432,9 @@
 
 	<div style="margin-top: 50px;"></div>
 
-	<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Home Layout and Mockups</p>
-
 	{%if aerialPhoto is defined and aerialPhoto %}
+  	<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Home Layout and Mockups</p>
+ 
 	<p><strong>Aerial of Home</strong></p>
 	<img src="data:image/png;base64, {{aerialPhoto}}" alt="Aerial of Home" style="max-width: 100%; height: auto;">
 	{% endif %}
