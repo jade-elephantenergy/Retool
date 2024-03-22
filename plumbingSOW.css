@@ -296,16 +296,29 @@
 		</body>
 
 		</html>
-<body>
-		<div>
-			<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Home Layout and Mockups</p>
-		</div>
-		<p><strong>Aerial of Home</strong></p>
-		<img src="data:image/png;base64, {{aerialPhoto}}" alt="Aerial of Home" style="max-width: 100%; height: auto;">
-		<p><strong>Additional Photos</strong></p>
-		<img src="data:image/png;base64, {{addtlPhoto1}}" alt="Additional Photo 1" style="max-width: 100%; height: auto;">
-		<img src="data:image/png;base64, {{addtlPhoto2}}" alt="Additional Photo 2" style="max-width: 100%; height: auto;">
-		<img src="data:image/png;base64, {{addtlPhoto3}}" alt="Additional Photo 3" style="max-width: 100%; height: auto;">
-		<img src="data:image/png;base64, {{addtlPhoto4}}" alt="Additional Photo 4" style="max-width: 100%; height: auto;">
-		<img src="data:image/png;base64, {{addtlPhoto5}}" alt="Additional Photo 5" style="max-width: 100%; height: auto;">
-    </body>
+
+		<body>
+      {% if aerialPhoto is defined and aerialPhoto %}
+			<div>
+				<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Home Layout and Mockups</p>
+			</div>
+			<p><strong>Aerial of Home</strong></p>
+			<img src="data:image/png;base64, {{aerialPhoto}}" alt="Aerial of Home" style="max-width: 100%; height: auto;">
+      {% endif %}
+      {% if addtlPhoto1 is defined and addtlPhoto1 %}
+			<p><strong>Additional Photos</strong></p>
+			<img src="data:image/png;base64, {{addtlPhoto1}}" alt="Additional Photo 1" style="max-width: 100%; height: auto;">
+      {% endif %}
+      {% if addtlPhoto2 is defined and addtlPhoto2 %}
+			<img src="data:image/png;base64, {{addtlPhoto2}}" alt="Additional Photo 2" style="max-width: 100%; height: auto;">
+      {% endif %}
+      {% if addtlPhoto3 is defined and addtlPhoto3 %}
+			<img src="data:image/png;base64, {{addtlPhoto3}}" alt="Additional Photo 3" style="max-width: 100%; height: auto;">
+      {% endif %}
+      {% if addtlPhoto4 is defined and addtlPhoto4 %}
+			<img src="data:image/png;base64, {{addtlPhoto4}}" alt="Additional Photo 4" style="max-width: 100%; height: auto;">
+      {% endif %}
+      {% if addtlPhoto5 is defined and addtlPhoto5 %}
+			<img src="data:image/png;base64, {{addtlPhoto5}}" alt="Additional Photo 5" style="max-width: 100%; height: auto;">
+      {% endif %}
+		</body>
