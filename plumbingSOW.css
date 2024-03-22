@@ -27,75 +27,81 @@
 		<img src="https://apitemplateio-user.s3-ap-southeast-1.amazonaws.com/17860/25001/400bd1ca-d72b-4da7-8252-c0a8d6742c8d.png" alt="Elephant Logo" width="111" height="100">
 		<h1 class="center-text" style="font-family: 'Roboto', sans-serif; font-size: 20px;">Plumbing Scope of Work</h1>
 
-		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Project Overview</p>
-		<style>
-			table {
-				font-family: 'Roboto', sans-serif;
-				font-size: 10pt;
-				border-collapse: collapse;
-			}
+		<div style="display: flex; justify-content: space-between;">
+			<div style="width: 58%;">
+				<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Project Overview</p>
+				<style>
+					table {
+						font-family: 'Roboto', sans-serif;
+						font-size: 10pt;
+						border-collapse: collapse;
+					}
 
-			td {
-				padding: 8px;
-				border: 1px solid #dddddd;
-			}
+					td {
+						padding: 8px;
+						border: 1px solid #dddddd;
+					}
 
-			strong {
-				font-weight: normal;
-			}
-		</style>
+					strong {
+						font-weight: normal;
+					}
+				</style>
 
-		<table>
-			<tr>
-				<td><strong>Project Manager</strong></td>
-				<td>{{ projectManager }}</td>
-			</tr>
-			<tr>
-				<td><strong>Project Address</strong></td>
-				<td>{{ projectAddress }}</td>
-			</tr>
-			<tr>
-				<td><strong>Customer Name</strong></td>
-				<td>{{ customerName }}</td>
-			</tr>
-			<tr>
-				<td><strong>Customer Email</strong></td>
-				<td>{{ customerEmail }}</td>
-			</tr>
-			<tr>
-				<td><strong>Customer Phone</strong></td>
-				<td>{{ customerPhone }}</td>
-			</tr>
-		</table>
+				<table>
+					<tr>
+						<td><strong>Project Manager</strong></td>
+						<td>{{ projectManager }}</td>
+					</tr>
+					<tr>
+						<td><strong>Project Address</strong></td>
+						<td>{{ projectAddress }}</td>
+					</tr>
+					<tr>
+						<td><strong>Customer Name</strong></td>
+						<td>{{ customerName }}</td>
+					</tr>
+					<tr>
+						<td><strong>Customer Email</strong></td>
+						<td>{{ customerEmail }}</td>
+					</tr>
+					<tr>
+						<td><strong>Customer Phone</strong></td>
+						<td>{{ customerPhone }}</td>
+					</tr>
+				</table>
+			</div>
 
-		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Home Overview</p>
-		<style>
-			table {
-				font-family: 'Roboto', sans-serif;
-				font-size: 10pt;
-				border-collapse: collapse;
-			}
+			<div style="width: 36%;">
+				<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Home Overview</p>
+				<style>
+					table {
+						font-family: 'Roboto', sans-serif;
+						font-size: 10pt;
+						border-collapse: collapse;
+					}
 
-			td {
-				padding: 8px;
-				border: 1px solid #dddddd;
-			}
+					td {
+						padding: 8px;
+						border: 1px solid #dddddd;
+					}
 
-			strong {
-				font-weight: normal;
-			}
-		</style>
+					strong {
+						font-weight: normal;
+					}
+				</style>
 
-		<table>
-			<tr>
-				<td><strong>Type of Home</strong></td>
-				<td>{{ homeType }}</td>
-			</tr>
-			<tr>
-				<td><strong>Wall Type</strong></td>
-				<td>{{ wallType }}</td>
-			</tr>
-		</table>
+				<table>
+					<tr>
+						<td><strong>Type of Home</strong></td>
+						<td>{{ homeType }}</td>
+					</tr>
+					<tr>
+						<td><strong>Wall Type</strong></td>
+						<td>{{ wallType }}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
 
 		<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Other Work</p>
 		<style>
@@ -298,27 +304,27 @@
 		</html>
 
 		<body>
-      {% if aerialPhoto is defined and aerialPhoto %}
+			{% if aerialPhoto is defined and aerialPhoto %}
 			<div>
 				<p style="font-family: 'Roboto', sans-serif; font-size: 18px; font-weight: bold;">Home Layout and Mockups</p>
 			</div>
 			<p><strong>Aerial of Home</strong></p>
 			<img src="data:image/png;base64, {{aerialPhoto}}" alt="Aerial of Home" style="max-width: 100%; height: auto;">
-      {% endif %}
-      {% if addtlPhoto1 is defined and addtlPhoto1 %}
+			{% endif %}
+			{% if addtlPhoto1 is defined and addtlPhoto1 %}
 			<p><strong>Additional Photos</strong></p>
 			<img src="data:image/png;base64, {{addtlPhoto1}}" alt="Additional Photo 1" style="max-width: 100%; height: auto;">
-      {% endif %}
-      {% if addtlPhoto2 is defined and addtlPhoto2 %}
+			{% endif %}
+			{% if addtlPhoto2 is defined and addtlPhoto2 %}
 			<img src="data:image/png;base64, {{addtlPhoto2}}" alt="Additional Photo 2" style="max-width: 100%; height: auto;">
-      {% endif %}
-      {% if addtlPhoto3 is defined and addtlPhoto3 %}
+			{% endif %}
+			{% if addtlPhoto3 is defined and addtlPhoto3 %}
 			<img src="data:image/png;base64, {{addtlPhoto3}}" alt="Additional Photo 3" style="max-width: 100%; height: auto;">
-      {% endif %}
-      {% if addtlPhoto4 is defined and addtlPhoto4 %}
+			{% endif %}
+			{% if addtlPhoto4 is defined and addtlPhoto4 %}
 			<img src="data:image/png;base64, {{addtlPhoto4}}" alt="Additional Photo 4" style="max-width: 100%; height: auto;">
-      {% endif %}
-      {% if addtlPhoto5 is defined and addtlPhoto5 %}
+			{% endif %}
+			{% if addtlPhoto5 is defined and addtlPhoto5 %}
 			<img src="data:image/png;base64, {{addtlPhoto5}}" alt="Additional Photo 5" style="max-width: 100%; height: auto;">
-      {% endif %}
+			{% endif %}
 		</body>
