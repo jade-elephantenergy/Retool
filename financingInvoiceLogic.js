@@ -456,7 +456,7 @@ Promise.all([lineItemsPromise,systemsPromise,equipmentPromise,ahriPromise,incent
         financingInvoice.invoice_amount = Math.round(financingPct);
         invoiceLines.push({
             line_item_type: 'financing',
-            name: 'Credit for financing loan',
+            name: 'Credit for Financing Loan',
             amount: -1 * financingInvoice.invoice_amount
         });
     }
@@ -602,10 +602,10 @@ Promise.all([lineItemsPromise,systemsPromise,equipmentPromise,ahriPromise,incent
                 }
             }
                 if(financingInvoice){
-                    console.log('first deposit invoice created: '+JSON.stringify(financingInvoice));
+                    console.log('financing invoice created: '+JSON.stringify(financingInvoice));
                     newLines.push({
                         invoice_id: financingInvoice.id,
-                        line_item_type: 'deposit',
+                        line_item_type: 'financing',
                         name: 'Financing: '+financingPct,
                         amount: financingInvoice.invoice_amount
                     });
