@@ -286,379 +286,354 @@ let firstDepositPct = firstDepositAmount.value;
 let secondDepositPct = secondDepositAmount.value;
 let firstCardFees = firstDepositCcFee.value;
 let secondCardFees = secondDepositCcFee.value;
-let financingPct = financingAmount.value;
 let finalCardFees = finalInvoiceCcfee.value;
+let financingPct = financingAmount.value;
 console.log(`Card fees: ${firstCardFees} ${secondCardFees} ${finalCardFees}`)
 
 let firstDepositInvoice;
 if(firstDepositPct > 0){
-	firstDepositInvoice = {
-		project_id: projectId,
-		invoice_type: 'First Deposit',
-		invoice_status: 'not sent',
-		invoice_amount: 0
-	}
+    firstDepositInvoice = {
+        project_id: projectId,
+        invoice_type: 'First Deposit',
+        invoice_status: 'not sent',
+        invoice_amount: 0
+    }
 }
 let secondDepositInvoice;
 if(secondDepositPct > 0){
-	secondDepositInvoice = {
-		project_id: projectId,
-		invoice_type: 'Second Deposit',
-		invoice_status: 'not sent',
-		invoice_amount: 0
-	}
+    secondDepositInvoice = {
+        project_id: projectId,
+        invoice_type: 'Second Deposit',
+        invoice_status: 'not sent',
+        invoice_amount: 0
+    }
 }
 let finalInvoice = {
-	project_id: projectId,
-	invoice_type: 'Final Invoice',
-	invoice_status: 'not sent',
-	invoice_amount: 0
+    project_id: projectId,
+    invoice_type: 'Final Invoice',
+    invoice_status: 'not sent',
+    invoice_amount: 0
 }
-let financingInvoice; 
-if(firstDepositPct > 0){
-	financingInvoice = {
-	  project_id: projectId,
-	  invoice_type: 'Financing Invoice',
-	  invoice_status: 'not sent',
-	  invoice_amount: 0
+let financingInvoice;
+if(financingPct > 0){
+    financingInvoice = {
+        project_id: projectId,
+        invoice_type: 'Financing Invoice',
+        invoice_status: 'not sent',
+        invoice_amount: 0
+    }
 }
-
 
 Promise.all([lineItemsPromise,systemsPromise,equipmentPromise,ahriPromise,incentivesPromise])
 .then(async ([gotlineItems,gotSystems,gotEquipmentData,gotAhriData,gotIncentivesData]) => {
-	console.log('let\'s goooooo');
-	// set global-scope vars
-	lineItems = gotlineItems;
-	systems = gotSystems;
-	equipmentData = gotEquipmentData;
-	ahriData = gotAhriData;
-	incentivesData = gotIncentivesData;
+    console.log('let\'s goooooo');
+    // set global-scope vars
+    lineItems = gotlineItems;
+    systems = gotSystems;
+    equipmentData = gotEquipmentData;
+    ahriData = gotAhriData;
+    incentivesData = gotIncentivesData;
 
-	// get permits
-	let permitIds = lineItems.filter(item => item.line_item_type === 'permit' && item.permit_id).map(item => item.permit_id);
-	permitsData = await new Promise((resolve,reject) => {
-		permits_by_id.trigger({
-			additionalScope: {
-				permitIds: permitIds
-			},
-			onSuccess: resolve,
-			onFailure: reject
-		});
-	});
-
-	// set up invoiceItems property on all systems
-	systems.forEach(system => system.invoiceItems = {});
-
-	// Process line items. Invoice lines will be stored in the system object.
-	console.log('processing '+lineItems.length+' line items');
-	lineItems.forEach(item => {
-		if(item.line_item_type === 'labor')
-			processLabor(item);
-		else if(item.line_item_type === 'equipment')
-			processEquipment(item);
-		else if(item.line_item_type === 'margin')
-			marginLineItems.push(item); // process margin later after all equipment and labor line items are dealt with
-		else if(item.line_item_type === 'discount')
-			processDiscount(item);
-		else if(item.line_item_type === 'incentive')
-			processIncentive(item);
-		else if(item.line_item_type === 'change order')
-			processChangeOrder(item);
-		else if(item.line_item_type === 'permit')
-			processPermit(item);
-		else if(item.line_item_type === 'maintenance plan')
-			processMaintenancePlan(item);
-		else
-			throw Error('Invalid line item type: '+item.line_item_type+'. Item in question: '+JSON.stringify(item));
-	});
-
-	// process margin afterward
-	console.log('processing margin');
-	marginLineItems.forEach(item => processMargin(item));
-
-	/// Process invoice line items in systems
-	let incentiveLines = [];
-	let discountLines = [];
-	let changeOrderLines = [];
-
-	systems.forEach(system => {
-		let newLines = [];
-		if(!system.invoiceItems || Object.keys(system.invoiceItems).length === 0)
-			return;
-		Object.values(system.invoiceItems).forEach(line => {
-			// put incentives, discounts, and change orders into separate arrays to be added at the end
-			if(line.sort_type === 'incentive')
-				incentiveLines.push(line);
-			else if(line.sort_type === 'discount')
-				discountLines.push(line);
-			else if(line.sort_type === 'change order')
-				changeOrderLines.push(line);
-			else
-				newLines.push(line);
-		});
-
-		// sort newLines in the right order
-		newLines.sort((a, b) => {
-			const indexA = sortOrder.indexOf(a.sort_type);
-			const indexB = sortOrder.indexOf(b.sort_type);
-
-			if(indexA < indexB)
-				return -1;
-			if(indexA > indexB)
-				return 1;
-			return 0;
-		});
-
-		// add to invoiceLines
-		invoiceLines = invoiceLines.concat(newLines);
-	});
-	// add incentives, discounts, and change orders
-	invoiceLines = invoiceLines.concat(discountLines);
-	invoiceLines = invoiceLines.concat(changeOrderLines);
-	invoiceLines = invoiceLines.concat(incentiveLines);
-
-	// add credit card fee for final invoice
-	if(finalCardFees){
-		invoiceLines.push({
-			line_item_type: 'credit card fee',
-			name: '3% Credit Card Fee',
-			amount: 0.03 * invoiceLines.reduce((acc,line) => acc + line.amount,0)
-		})
-	}
-
-	// get amount before incentives and use that to set up deposit amounts
-	amountBeforeIncentives = invoiceLines.reduce((acc,line) => {
-		if(line.sort_type === 'incentive')
-			return acc;
-		else
-			return acc + line.amount;
-	},0);
-	let netCost = Math.round((invoiceLines.reduce((acc,line) => acc + line.amount,0) + footerLines.reduce((acc,line) => acc + line.amount,0))*100)/100;
-	
-	// Set up credits for deposit invoices
-	if(firstDepositInvoice){
-		firstDepositInvoice.invoice_amount = Math.round(firstDepositPct * amountBeforeIncentives);
-		invoiceLines.push({
-			line_item_type: 'deposit',
-			name: 'Credit for First Deposit',
-			amount: -1 * firstDepositInvoice.invoice_amount
-		});
-	}
-	if(secondDepositInvoice){
-		secondDepositInvoice.invoice_amount = Math.round(secondDepositPct * amountBeforeIncentives);
-		invoiceLines.push({
-			line_item_type: 'deposit',
-			name: 'Credit for Second Deposit',
-			amount: -1 * secondDepositInvoice.invoice_amount
-		});
-	}
-  if(financingInvoice){
-    financingInvoice.invoice_amount = Math.round(financingPct);
-      invoiceLines.push({
-        line_item_type: 'financing',
-        name: 'Credit for Financing Loan',
-        amount: -1 * financingInvoice.invoice_amount
-      });
-  }
-
-	// fill invoice_amount field
-	finalInvoice.invoice_amount = Math.round(invoiceLines.reduce((acc,line) => acc + line.amount,0)*100)/100;
-
-	// remove sort_type field b/c it is not stored in db
-	invoiceLines.forEach(line => delete line.sort_type);
-
-	// set up final invoice footer
-	if(footerLines.length > 0){
-		finalInvoice.footer = 'Incentives payable directly to customer: ';
-		footerLines.forEach(line => {
-			finalInvoice.footer += `\n $${-line.amount} - ${line.name}`;
-		});
-		finalInvoice.footer += '\n\n Net Project Cost: $'+netCost;
-	}
-
-	// insert final invoice
-	finalInvoicePromise = new Promise((resolve,reject) => {
-		insert_invoice.trigger({
-			onSuccess: resolve,
-			onFailure: reject,
-			additionalScope: {
-				invoiceData: finalInvoice
-			}
-		});
-	}).then((gotFinalInvoice) => {
-		console.log('inserted final invoice');
-		// Get inserted invoice data w/id
-		finalInvoice = gotFinalInvoice.result[0];
-		
-		// add invoice id to line items
-		invoiceLines.forEach(item => {
-			item.invoice_id = finalInvoice.id;
-		});
-
-		// insert line items
-		invoiceLinesPromise = new Promise((resolve,reject) => {
-			insert_invoice_lines.trigger({
-				onSuccess: resolve,
-				onFailure: reject,
-				additionalScope: {
-					invoiceLines: invoiceLines 
-				}
-			});
-		}).then(invoiceLines => {
-			console.log(invoiceLines.result[0].rowCount+' lines created for final invoice');
-		}).catch(error => {
-			console.log('Error in processing line items for final invoice: '+error.message);
-			throw error;
-		});
-
-		// add invoice id to other deposits
-		if(firstDepositInvoice)
-			firstDepositInvoice.invoice_id = finalInvoice.id;
-		if(secondDepositInvoice)
-			secondDepositInvoice.invoice_id = finalInvoice.id;
-    if(financingInvoice) 
-      financingInvoice.invoice_id = financingInvoice.id;
-
-		// Insert deposit invoices
-		let firstDepositInvoicePromise;
-		if(firstDepositInvoice){
-			firstDepositInvoicePromise = new Promise((resolve,reject) => {
-				insert_invoice.trigger({
-					onSuccess: resolve,
-					onFailure: reject,
-					additionalScope: {
-						invoiceData: firstDepositInvoice
-					}
-				});
-			});
-		}
-		let secondDepositInvoicePromise;
-		if(secondDepositInvoice){
-			secondDepositInvoicePromise = new Promise((resolve,reject) => {
-				insert_invoice.trigger({
-					onSuccess: resolve,
-					onFailure: reject,
-					additionalScope: {
-						invoiceData: secondDepositInvoice
-					}
-				});
-			});
-		}
-    let financingInvoicePromise;
-    if(financingInvoice){
-      financingInvoicePromise = new Promise((resolve,reject) => {
-        insert_invoice.trigger({
-          onSuccess: resolve,
-          onFailure: reject,
-          additionalScope: {
-            invoiceData: financingInvoice
-          }
+    // get permits
+    let permitIds = lineItems.filter(item => item.line_item_type === 'permit' && item.permit_id).map(item => item.permit_id);
+    permitsData = await new Promise((resolve,reject) => {
+        permits_by_id.trigger({
+            additionalScope: {
+                permitIds: permitIds
+            },
+            onSuccess: resolve,
+            onFailure: reject
         });
-      });
+    });
+
+    // set up invoiceItems property on all systems
+    systems.forEach(system => system.invoiceItems = {});
+
+    // Process line items. Invoice lines will be stored in the system object.
+    console.log('processing '+lineItems.length+' line items');
+    lineItems.forEach(item => {
+        if(item.line_item_type === 'labor')
+            processLabor(item);
+        else if(item.line_item_type === 'equipment')
+            processEquipment(item);
+        else if(item.line_item_type === 'margin')
+            marginLineItems.push(item); // process margin later after all equipment and labor line items are dealt with
+        else if(item.line_item_type === 'discount')
+            processDiscount(item);
+        else if(item.line_item_type === 'incentive')
+            processIncentive(item);
+        else if(item.line_item_type === 'change order')
+            processChangeOrder(item);
+        else if(item.line_item_type === 'permit')
+            processPermit(item);
+        else if(item.line_item_type === 'maintenance plan')
+            processMaintenancePlan(item);
+        else
+            throw Error('Invalid line item type: '+item.line_item_type+'. Item in question: '+JSON.stringify(item));
+    });
+
+    // process margin afterward
+    console.log('processing margin');
+    marginLineItems.forEach(item => processMargin(item));
+
+    /// Process invoice line items in systems
+    let incentiveLines = [];
+    let discountLines = [];
+    let changeOrderLines = [];
+
+    systems.forEach(system => {
+        let newLines = [];
+        if(!system.invoiceItems || Object.keys(system.invoiceItems).length === 0)
+            return;
+        Object.values(system.invoiceItems).forEach(line => {
+            // put incentives, discounts, and change orders into separate arrays to be added at the end
+            if(line.sort_type === 'incentive')
+                incentiveLines.push(line);
+            else if(line.sort_type === 'discount')
+                discountLines.push(line);
+            else if(line.sort_type === 'change order')
+                changeOrderLines.push(line);
+            else
+                newLines.push(line);
+        });
+
+        // sort newLines in the right order
+        newLines.sort((a, b) => {
+            const indexA = sortOrder.indexOf(a.sort_type);
+            const indexB = sortOrder.indexOf(b.sort_type);
+
+            if(indexA < indexB)
+                return -1;
+            if(indexA > indexB)
+                return 1;
+            return 0;
+        });
+
+        // add to invoiceLines
+        invoiceLines = invoiceLines.concat(newLines);
+    });
+    // add incentives, discounts, and change orders
+    invoiceLines = invoiceLines.concat(discountLines);
+    invoiceLines = invoiceLines.concat(changeOrderLines);
+    invoiceLines = invoiceLines.concat(incentiveLines);
+
+    // add credit card fee for final invoice
+    if(finalCardFees){
+        invoiceLines.push({
+            line_item_type: 'credit card fee',
+            name: '3% Credit Card Fee',
+            amount: 0.03 * invoiceLines.reduce((acc,line) => acc + line.amount,0)
+        })
     }
 
-		// Insert invoice lines for each deposit invoice
-		Promise.all([firstDepositInvoicePromise,secondDepositInvoicePromise, financingInvoicePromise]).then(([gotFirstDepositInvoice,gotSecondDepositInvoice, gotFinancingInvoice]) => {
-			let newLines = [];
-			let firstDepositInvoice = gotFirstDepositInvoice.result[0];
-			let secondDepositInvoice = gotSecondDepositInvoice.result[0];
-      let financingInvoice = gotFinancingInvoice.result[0];
+    // get amount before incentives and use that to set up deposit amounts
+    amountBeforeIncentives = invoiceLines.reduce((acc,line) => {
+        if(line.sort_type === 'incentive')
+            return acc;
+        else
+            return acc + line.amount;
+    },0);
+    let netCost = Math.round((invoiceLines.reduce((acc,line) => acc + line.amount,0) + footerLines.reduce((acc,line) => acc + line.amount,0))*100)/100;
+    
+    // Set up credits for deplosit invoices
+    if(firstDepositInvoice){
+        firstDepositInvoice.invoice_amount = Math.round(firstDepositPct * amountBeforeIncentives);
+        invoiceLines.push({
+            line_item_type: 'deposit',
+            name: 'Credit for First Deposit',
+            amount: -1 * firstDepositInvoice.invoice_amount
+        });
+    }
+    if(secondDepositInvoice){
+        secondDepositInvoice.invoice_amount = Math.round(secondDepositPct * amountBeforeIncentives);
+        invoiceLines.push({
+            line_item_type: 'deposit',
+            name: 'Credit for Second Deposit',
+            amount: -1 * secondDepositInvoice.invoice_amount
+        });
+    }
+    if(financingInvoice){
+        financingInvoice.invoice_amount = Math.round(financingPct);
+        invoiceLines.push({
+            line_item_type: 'financing',
+            name: 'Credit for financing loan',
+            amount: -1 * financingInvoice.invoice_amount
+        });
+    }
 
-			if(firstDepositInvoice){
-				console.log('first deposit invoice created: '+JSON.stringify(firstDepositInvoice));
-				newLines.push({
-					invoice_id: firstDepositInvoice.id,
-					line_item_type: 'deposit',
-					name: 'First Deposit: '+firstDepositPct*100+'% of total before incentives',
-					amount: firstDepositInvoice.invoice_amount
-				});
-				// add cc fees
-				if(firstCardFees){
-					newLines.push({
-						invoice_id: firstDepositInvoice.id,
-						line_item_type: 'credit card fee',
-						name: '3% Credit Card Fee',
-						amount: Math.round(0.03 * firstDepositInvoice.invoice_amount)
-					});
-				}
-			}
-			if(secondDepositInvoice){
-				console.log('second deposit invoice created: '+JSON.stringify(secondDepositInvoice));
-				newLines.push({
-					invoice_id: secondDepositInvoice.id,
-					line_item_type: 'deposit',
-					name: 'Second Deposit: '+secondDepositPct*100+'% of total before incentives',
-					amount: secondDepositInvoice.invoice_amount
-				});
-				// add cc fees
-				if(secondCardFees){
-					newLines.push({
-						invoice_id: secondDepositInvoice.id,
-						line_item_type: 'credit card fee',
-						name: '3% Credit Card Fee',
-						amount: Math.round(0.03 * secondDepositInvoice.invoice_amount)
-					});
-				}
-			}
-      if(financingInvoice){
-				console.log('financing invoice created: '+JSON.stringify(financingInvoice));
-				newLines.push({
-					invoice_id: financingInvoice.id,
-					line_item_type: 'financing',
-					name: 'Financing: '+financingPct,
-					amount: financingInvoice.invoice_amount
-				});
-			if(newLines.length > 0){
-				let depositLinesPromise = new Promise((resolve,reject) => {
-					insert_invoice_lines.trigger({
-						onSuccess: resolve,
-						onFailure: reject,
-						additionalScope: {
-							invoiceLines: newLines
-						}
-					});
-				}).then(invoiceLines => {
-					console.log(invoiceLines.result[0].rowCount+' lines created for deposit invoices');
-				}).catch(error => {
-					console.log('Error in processing line items for deposit invoices: '+error.stack);
-					throw error;
-				});;
-			}
-		}).catch(error => {
-			console.log('Error in processing deposit invoices: '+error.stack);
-			throw error;
-		});
-	});
 
-	//TODO workflow to add credit line item to final invoice when deposit invoice is paid
-}).catch(error => {
-	console.log('Error encountered in processing: '+error.stack);
-	throw error;
-});	
+    // fill invoice_amount field
+    finalInvoice.invoice_amount = Math.round(invoiceLines.reduce((acc,line) => acc + line.amount,0)*100)/100;
 
-if(newLines.length > 0){
-				let financingLinesPromise = new Promise((resolve,reject) => {
-					insert_invoice_lines.trigger({
-						onSuccess: resolve,
-						onFailure: reject,
-						additionalScope: {
-							invoiceLines: newLines
-						}
-					});
-				}).then(invoiceLines => {
-					console.log(invoiceLines.result[0].rowCount+' lines created for financing invoice');
-				}).catch(error => {
-					console.log('Error in processing line items for financing invoice: '+error.stack);
-					throw error;
-				});;
-			}
-		}).catch(error => {
-			console.log('Error in processing financing invoice: '+error.stack);
-			throw error;
-		});
+    // remove sort_type field b/c it is not stored in db
+    invoiceLines.forEach(line => delete line.sort_type);
 
-	//TODO workflow to add credit line item to final invoice when deposit invoice is paid
-}).catch(error => {
-	console.log('Error encountered in processing: '+error.stack);
-	throw error;
+    // set up final invoice footer
+    if(footerLines.length > 0){
+        finalInvoice.footer = 'Incentives payable directly to customer: ';
+        footerLines.forEach(line => {
+            finalInvoice.footer += `\n $${-line.amount} - ${line.name}`;
+        });
+        finalInvoice.footer += '\n\n Net Project Cost: $'+netCost;
+    }
+
+    // insert final invoice
+    finalInvoicePromise = new Promise((resolve,reject) => {
+        insert_invoice.trigger({
+            onSuccess: resolve,
+            onFailure: reject,
+            additionalScope: {
+                invoiceData: finalInvoice
+            }
+        });
+    }).then((gotFinalInvoice) => {
+        console.log('inserted final invoice');
+        // Get inserted invoice data w/id
+        finalInvoice = gotFinalInvoice.result[0];
+        
+        // add invoice id to line items
+        invoiceLines.forEach(item => {
+            item.invoice_id = finalInvoice.id;
+        });
+
+        // insert line items
+        invoiceLinesPromise = new Promise((resolve,reject) => {
+            insert_invoice_lines.trigger({
+                onSuccess: resolve,
+                onFailure: reject,
+                additionalScope: {
+                    invoiceLines: invoiceLines 
+                }
+            });
+        }).then(invoiceLines => {
+            console.log(invoiceLines.result[0].rowCount+' lines created for final invoice');
+        }).catch(error => {
+            console.log('Error in processing line items for final invoice: '+error.message);
+            throw error;
+        });
+
+        // add invoice id to other deposits
+        if(firstDepositInvoice)
+            firstDepositInvoice.invoice_id = finalInvoice.id;
+        if(secondDepositInvoice)
+            secondDepositInvoice.invoice_id = finalInvoice.id;
+        if(financingInvoice)
+            financingInvoice.invoice_id = financingInvoice.id;
+
+        // Insert deposit invoices
+        let firstDepositInvoicePromise;
+        if(firstDepositInvoice){
+            firstDepositInvoicePromise = new Promise((resolve,reject) => {
+                insert_invoice.trigger({
+                    onSuccess: resolve,
+                    onFailure: reject,
+                    additionalScope: {
+                        invoiceData: firstDepositInvoice
+                    }
+                });
+            });
+        }
+        let secondDepositInvoicePromise;
+        if(secondDepositInvoice){
+            secondDepositInvoicePromise = new Promise((resolve,reject) => {
+                insert_invoice.trigger({
+                    onSuccess: resolve,
+                    onFailure: reject,
+                    additionalScope: {
+                        invoiceData: secondDepositInvoice
+                    }
+                });
+            });
+        }
+        let financingInvoicePromise;
+        if(financingInvoice){
+            financingInvoicePromise = new Promise((resolve,reject) => {
+                insert_invoice.trigger({
+                    onSuccess: resolve,
+                    onFailure: reject,
+                    additionalScope: {
+                        invoiceData: financingInvoice
+                    }
+                });
+            });
+        }
+
+        // Insert invoice lines for each deposit invoice
+        Promise.all([firstDepositInvoicePromise,secondDepositInvoicePromise, financingInvoicePromise]).then(([gotFirstDepositInvoice,gotSecondDepositInvoice,gotFinancingInvoice]) => {
+            let newLines = [];
+            let firstDepositInvoice = gotFirstDepositInvoice.result[0];
+            let secondDepositInvoice = gotSecondDepositInvoice.result[0];
+            let financingInvoice = gotFinancingInvoice.results[0];
+
+            if(firstDepositInvoice){
+                console.log('first deposit invoice created: '+JSON.stringify(firstDepositInvoice));
+                newLines.push({
+                    invoice_id: firstDepositInvoice.id,
+                    line_item_type: 'deposit',
+                    name: 'First Deposit: '+firstDepositPct*100+'% of total before incentives',
+                    amount: firstDepositInvoice.invoice_amount
+                });
+                // add cc fees
+                if(firstCardFees){
+                    newLines.push({
+                        invoice_id: firstDepositInvoice.id,
+                        line_item_type: 'credit card fee',
+                        name: '3% Credit Card Fee',
+                        amount: Math.round(0.03 * firstDepositInvoice.invoice_amount)
+                    });
+                }
+            }
+            if(secondDepositInvoice){
+                console.log('second deposit invoice created: '+JSON.stringify(secondDepositInvoice));
+                newLines.push({
+                    invoice_id: secondDepositInvoice.id,
+                    line_item_type: 'deposit',
+                    name: 'Second Deposit: '+secondDepositPct*100+'% of total before incentives',
+                    amount: secondDepositInvoice.invoice_amount
+                });
+                // add cc fees
+                if(secondCardFees){
+                    newLines.push({
+                        invoice_id: secondDepositInvoice.id,
+                        line_item_type: 'credit card fee',
+                        name: '3% Credit Card Fee',
+                        amount: Math.round(0.03 * secondDepositInvoice.invoice_amount)
+                    });
+                }
+            }
+                if(financingInvoice){
+                    console.log('first deposit invoice created: '+JSON.stringify(financingInvoice));
+                    newLines.push({
+                        invoice_id: financingInvoice.id,
+                        line_item_type: 'deposit',
+                        name: 'Financing: '+financingPct,
+                        amount: financingInvoice.invoice_amount
+                    });
+                }
+            if(newLines.length > 0){
+                let depositLinesPromise = new Promise((resolve,reject) => {
+                    insert_invoice_lines.trigger({
+                        onSuccess: resolve,
+                        onFailure: reject,
+                        additionalScope: {
+                            invoiceLines: newLines
+                        }
+                    });
+                }).then(invoiceLines => {
+                    console.log(invoiceLines.result[0].rowCount+' lines created for deposit invoices');
+                }).catch(error => {
+                    console.log('Error in processing line items for deposit invoices: '+error.stack);
+                    throw error;
+                });
+            }
+        }).catch(error => {
+            console.log('Error in processing deposit invoices: '+error.stack);
+            throw error;
+        });
+    });
+
+    //TODO workflow to add credit line item to final invoice when deposit invoice is paid
+ }).catch(error => {
+    console.log('Error encountered in processing: '+error.stack);
+    throw error;
 });	
