@@ -656,7 +656,6 @@ if(newLines.length > 0){
 			console.log('Error in processing financing invoice: '+error.stack);
 			throw error;
 		});
-	});
 
 	//TODO workflow to add credit line item to final invoice when deposit invoice is paid
 }).catch(error => {
