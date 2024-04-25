@@ -603,7 +603,7 @@ Promise.all([lineItemsPromise,systemsPromise,equipmentPromise,ahriPromise,incent
 				newLines.push({
 					invoice_id: financingInvoice.id,
 					line_item_type: 'financing',
-					name: 'Financing: 'financingInvoice.invoice_amount',
+					name: 'Financing: '+financingPct,
 					amount: financingInvoice.invoice_amount
 				});
 			if(newLines.length > 0){
