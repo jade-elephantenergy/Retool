@@ -314,11 +314,13 @@ let finalInvoice = {
 	invoice_status: 'not sent',
 	invoice_amount: 0
 }
-let financingInvoice = {
-  project_id: projectId,
-  invoice_type: 'Financing Invoice',
-  invoice_status: 'not sent',
-  invoice_amount: 0
+let financingInvoice; 
+if(firstDepositPct > 0){
+	financingInvoice = {
+	  project_id: projectId,
+	  invoice_type: 'Financing Invoice',
+	  invoice_status: 'not sent',
+	  invoice_amount: 0
 }
 
 
@@ -433,7 +435,7 @@ Promise.all([lineItemsPromise,systemsPromise,equipmentPromise,ahriPromise,incent
 	},0);
 	let netCost = Math.round((invoiceLines.reduce((acc,line) => acc + line.amount,0) + footerLines.reduce((acc,line) => acc + line.amount,0))*100)/100;
 	
-	// Set up credits for deplosit invoices
+	// Set up credits for deposit invoices
 	if(firstDepositInvoice){
 		firstDepositInvoice.invoice_amount = Math.round(firstDepositPct * amountBeforeIncentives);
 		invoiceLines.push({
